@@ -1,6 +1,6 @@
-import homePage from './pages/home-page.cmp.js'
-import keepApp from './apps/missKeep/pages/keep-app.cmp.js'
-import emailApp from './apps/misterEmail/pages/email-app.cmp.js'
+import homePage from './views/home-page.cmp.js'
+import keepApp from './apps/missKeep/views/keep-app.cmp.js'
+import emailApp from './apps/misterEmail/views/email-app.cmp.js'
 
 const routes = [
        {
@@ -8,7 +8,7 @@ const routes = [
            component: homePage
        },
        {
-           path: '/keep',
+           path: '/keeper',
            component: keepApp
        },
        {

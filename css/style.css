@@ -1,25 +1,23 @@
-/* layout */
-@import 'layout/main-container-layout.css';
-@import 'layout/main-layout.css';
+
+
+
+/* main layout */
+@import './layout/main-container-layout.css';
+@import './layout/main-layout.css';
+
+/* basic */
+@import './basic/base.css';
 
 /* setup */
-
-@import 'setup/helpers.css';
-@import 'setup/vars.css';
-
-/* base */
-
-@import 'basic/base.css';
+@import './setup/helpers.css';
+@import './setup/vars.css';
 
 /* general components */
+@import './general-components/header.css';
+@import './general-components/footer.css';
+@import './general-components/home-page.css';
+@import './general-components/router-link.css';
+@import './general-components/user-msg.css';
 
-@import 'components/header.css';
-@import 'components/footer.css';
-@import 'components/home-page.css';
-@import 'components/user-msg.css';
-@import 'components/router-link.css';
 
-/* misterEmail components */
-
-/* missKeep components */
 

@@ -1,5 +1,9 @@
-.main-container {
+/* .main-container {
    max-width: 1080px;
    height: 90vh;
    text-align: center;
+} */
+
+.app-layout{
+   height: 84vh;
 }
