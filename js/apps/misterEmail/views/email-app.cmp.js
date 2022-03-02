@@ -7,10 +7,14 @@ import emailList from '../cmps/email-list.cmp.js'
 export default {
     template: `
        <section class="email-app app-layout main-layout">
-              <email-filter />
-              <email-compose />
-              <email-folder-list />
-              <email-list :emails="emailsForDisplay" />
+               <email-filter @filtered="setFilter"/>
+            <div class="email-container">
+            <div class="side-bar">
+               <email-compose />
+               <email-folder-list />
+            </div>
+               <email-list :emails="emailsForDisplay" />
+            </div>
        </section>
    `,
     components: {
@@ -39,8 +43,8 @@ export default {
     computed: {
         emailsForDisplay() {
             if (!this.filterBy) return this.emails;
-            const regex = new RegExp(this.filterBy.txt, 'i');
-            return this.emails.filter(email => regex.test(email.txt));
+            const regex = new RegExp(this.filterBy.inputVal, 'i');
+            return this.emails.filter(email => regex.test(email.criteria.txt));
         }
     }
 }

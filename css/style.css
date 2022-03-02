@@ -29,3 +29,10 @@
 @import './keeper-css/input-container.css';
 @import './keeper-css/image-note.css';
 
+/* email-components */
+
+/* @import './email-css/email-preview.css'; */
+@import './email-css/email-list.css';
+@import './email-css/email-compose.css';
+@import './email-css/email-filter.css';
+@import './email-css/email-app.css';
