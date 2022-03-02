@@ -43,7 +43,13 @@ function save(note) {
 function getEmptynote() {
     return {
         id: utilService.makeId(), 
-        txt: null       
+        txt: null,
+        isPinned: false,
+        img:null,
+        todos:null,
+        video:null
+
+
     };
 }
 

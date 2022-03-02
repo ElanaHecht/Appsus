@@ -1,6 +1,6 @@
 .note-preview{
-    width: 200px ;
+    min-width: 200px ;
     height: fit-content;
     background-color: lightcyan;
-
+    margin: 10px;
 }

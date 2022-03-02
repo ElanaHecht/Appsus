@@ -24,5 +24,6 @@
 
 /* keeper-components */
 
-@import './keeper-css/note-preview.css'
+@import './keeper-css/note-preview.css';
+@import './keeper-css/note-list.css';
 

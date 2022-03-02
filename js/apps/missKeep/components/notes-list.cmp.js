@@ -2,10 +2,11 @@ import notePreview from './note-preview.cmp.js';
 
 
 export default{
+    props:['notes'],
     template:`
-        <section class = 'notes-list'>
+        <section class = 'notes-list main-layout flex'>
 
-    <note-preview></note-preview>
+    <note-preview v-for="note in notes" :key="note.id" :note = "note"></note-preview>
 
 
         </section>
@@ -25,6 +26,9 @@ export default{
         notePreview,
         
 
+    },
+    created(){
+        console.log('keep-list',this.notes);
     },
     methods:{
 
