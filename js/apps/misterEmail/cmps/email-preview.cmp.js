@@ -27,9 +27,6 @@ if (!this.readEmail) {
    this.email.criteria.isRead = false;
    return this.readEmail = false;
 }
-
-this.email.criteria.isRead = true;
-this.readEmail = true;
 }
    },
    computed: {

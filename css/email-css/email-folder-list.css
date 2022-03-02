@@ -1,0 +1,15 @@
+.email-folder-list li {
+   cursor: pointer;
+   padding: 10px 15px;
+   border-top-right-radius: 20px;
+   border-bottom-right-radius: 20px;
+}
+
+.email-folder-list li:hover {
+   background-color: var(--lightgray);
+}
+
+.folder-chosen {
+   background-color: var(--lighttheme);
+   color: var(theme);
+}

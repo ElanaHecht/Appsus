@@ -1,7 +1,8 @@
 export default {
+   props: ['emails'],
    template: `
        <section class="email-folder-list">
-          <ul>
+          <ul class="list-style">
              <li @click="setFolder">Inbox</li>
              <li @click="setFolder">Sent</li>
              <li @click="setFolder">Trash</li>
@@ -17,7 +18,8 @@ export default {
    methods: {
       setFolder(ev) {
 this.status = ev.target.innerText;
-console.log(this.status);
+this.$emit('setFolder', this.status)
+}
+
       },
    }
-}

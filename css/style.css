@@ -31,6 +31,7 @@
 
 /* email-components */
 
+@import './email-css/email-folder-list.css';
 @import './email-css/email-preview.css';
 @import './email-css/email-list.css';
 @import './email-css/email-compose.css';

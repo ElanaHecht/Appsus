@@ -11,7 +11,7 @@ export default {
             <div class="email-container">
             <div class="side-bar">
                <email-compose />
-               <email-folder-list />
+               <email-folder-list :emails="emails" @setFolder="setFolder"/>
             </div>
                <email-list :emails="emailsForDisplay" />
             </div>
@@ -27,6 +27,7 @@ export default {
         return {
             emails: null,
             filterBy: null,
+            folder: 'inbox',
         }
     },
     created() {
@@ -38,6 +39,9 @@ export default {
     methods: {
         setFilter(filterBy) {
             this.filterBy = filterBy;
+        },
+        setFolder(folder) {
+            this.folder = folder;
         }
     },
     computed: {
@@ -54,9 +58,25 @@ export default {
                     break;
                 case 'ALL':
                     byRead = this.emails
+                    break;
+            }
+            let byFolder = null;
+            switch (this.folder) {
+                case 'Inbox':
+                    byFolder = this.emails.filter(email => email.criteria.status = 'inbox')
+                    break;
+                case 'Sent':
+                    byFolder = this.emails.filter(email => email.criteria.status = 'sent')
+                    break;
+                case 'Trash':
+                    byFolder = this.emails.filter(email => email.criteria.status = 'trash')
+                    break;
+                case 'Draft':
+                    byFolder = this.emails.filter(email => email.criteria.status = 'draft')
+                    break;
             }
             const regex = new RegExp(this.filterBy.inputSearch, 'i');
-            return byRead.filter(email => regex.test(email.criteria.txt))
+            return byFolder.filter(email => regex.test(email.criteria.txt))
         }
     }
 }
