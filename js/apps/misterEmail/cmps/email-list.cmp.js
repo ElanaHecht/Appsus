@@ -1,0 +1,22 @@
+import emailPreview from './email-preview.cmp.js'
+
+export default {
+   props: ['emails'],
+   template: `
+            <section class="email-folder-list">
+               <ul>
+                  <li v-for="email in emails" :key="email.id">
+               <email-preview :email="email"/>
+                  </li>
+               </ul>
+            </section>
+   `,
+   components: {
+      emailPreview,
+   },
+   data() {
+      return {
+
+      }
+   },
+}

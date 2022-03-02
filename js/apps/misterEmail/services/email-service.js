@@ -33,9 +33,10 @@ function save(email) {
 }
 
 // Factory Method:
-function getEmptyEmail(to = '', subject = '', body = '') {
+function getEmptyEmail(name, to = '', subject = '', body = '') {
     return {
         id: '',
+        name,
         subject,
         body,
         isRead: false,
@@ -48,18 +49,17 @@ function _createEmails() {
     let emails = utilService.loadFromStorage(STORAGE_KEY);
     if (!emails || !emails.length) {
         emails = [];
-        emails.push(_creatEmail('rachel@friends.com', 'On a break?', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique velit minus veritatis obcaecati animi ullam! Explicabo deserunt eligendi omnis deleniti vero labore, maxime voluptatibus. Quos dolore fuga laudantium nesciunt! Fugit?'));
-        emails.push(_creatEmail('ross@friends.com', 'We were on a break!', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique velit minus veritatis obcaecati animi ullam! Explicabo deserunt eligendi omnis deleniti vero labore, maxime voluptatibus. Quos dolore fuga laudantium nesciunt! Fugit?'));
-        emails.push(_creatEmail('chandler@friends.com', 'Could this email be longer?', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique velit minus veritatis obcaecati animi ullam! Explicabo deserunt eligendi omnis deleniti vero labore, maxime voluptatibus. Quos dolore fuga laudantium nesciunt! Fugit?'));
-        emails.push(_creatEmail('pheobe@friends.com', 'Smelly cat', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique velit minus veritatis obcaecati animi ullam! Explicabo deserunt eligendi omnis deleniti vero labore, maxime voluptatibus. Quos dolore fuga laudantium nesciunt! Fugit?'));
-        emails.push(_creatEmail('joey@friends.com', 'How you doin?', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique velit minus veritatis obcaecati animi ullam! Explicabo deserunt eligendi omnis deleniti vero labore, maxime voluptatibus. Quos dolore fuga laudantium nesciunt! Fugit?'));
+        emails.push(_creatEmail('ross geller','ross@friends.com', 'We were on a break!', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique velit minus veritatis obcaecati animi ullam! Explicabo deserunt eligendi omnis deleniti vero labore, maxime voluptatibus. Quos dolore fuga laudantium nesciunt! Fugit?'));
+        emails.push(_creatEmail('chandler bing', 'chandler@friends.com', 'Could this email be longer?', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique velit minus veritatis obcaecati animi ullam! Explicabo deserunt eligendi omnis deleniti vero labore, maxime voluptatibus. Quos dolore fuga laudantium nesciunt! Fugit?'));
+        emails.push(_creatEmail('pheobe buffet', 'pheobe@friends.com', 'Smelly cat', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique velit minus veritatis obcaecati animi ullam! Explicabo deserunt eligendi omnis deleniti vero labore, maxime voluptatibus. Quos dolore fuga laudantium nesciunt! Fugit?'));
+        emails.push(_creatEmail('joey tribiani', 'joey@friends.com', 'How you doin?', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique velit minus veritatis obcaecati animi ullam! Explicabo deserunt eligendi omnis deleniti vero labore, maxime voluptatibus. Quos dolore fuga laudantium nesciunt! Fugit?'));
         utilService.saveToStorage(STORAGE_KEY, emails);
     }
     return emails;
 }
 
-function _creatEmail(to, subject, body) {
-    const email = getEmptyEmail(to, subject, body)
+function _creatEmail(name = 'Gunther', to, subject, body) {
+    const email = getEmptyEmail(name, to, subject, body)
     email.id = utilService.makeId()
     email.sentAt = Date.now()
     return email;
