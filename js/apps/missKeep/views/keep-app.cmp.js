@@ -4,12 +4,11 @@ import { notesService } from '../service/notes-service.js';
 
 export default {
    template:`
-       <section class="keep-app app-layout main-layout">
+        <section class="keep-app app-layout main-layout">
                <h1>Keep App</h1>
                <notes-input @addTxt = "addTxt" ></notes-input>
-                <notes-list></notes-list>
-
-       </section>
+               <notes-list></notes-list>
+        </section>
    `,
    components:{
     notesList,
