@@ -43,3 +43,8 @@
     transform: scale(1.3);
     cursor: pointer;
 }
+
+
+.active{
+    transform: scale(1.3);
+}
