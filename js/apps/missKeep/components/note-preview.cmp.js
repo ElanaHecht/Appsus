@@ -9,7 +9,7 @@ export default{
     
     props:['note'],
     template:`
-    <section class = "note-preview">
+    <section class = "note-preview" :style="noteColor">
         
     
     <!-- <div class="note-container"> -->
@@ -17,7 +17,7 @@ export default{
             <note-video v-if="note.video" :video="note.video"></note-video>
             <note-todo v-if = "note.todo" :todo="note.todo"></note-todo>
             <note-img v-if = "note.img" :img="note.img"></note-img>
-            <note-options></note-options>
+            <note-options @selectedColor = "changeColor"></note-options>
         <!-- </div> -->
 
 
@@ -27,6 +27,13 @@ export default{
     `,
     data(){
         return{
+            noteColor:null,
+            
+        }
+    },
+    methods:{
+        changeColor(color){
+            this.noteColor = `background-color:${color}`
 
         }
     },

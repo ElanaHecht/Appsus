@@ -5,7 +5,7 @@ export default{
     template:`
         <section class = "note-options flex space">
             <div class="color-note">
-                <div class="note-btn " @click="pickColor">🎨</div>
+                <div class="note-btn ">🎨</div>
                 <note-color-pick @selectedColor = "changeColor"></note-color-pick>
             </div>
 
@@ -18,7 +18,8 @@ export default{
     `,
     data(){
         return{
-
+            noteColor:'white'
+            
         }
 
     },
@@ -28,8 +29,9 @@ export default{
     },
 
     methods:{
-        changeColor(){
-
+        changeColor(color){
+            console.log(color);
+            this.$emit('selectedColor', color);
         },
         removeNote(){
 

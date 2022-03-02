@@ -38,8 +38,12 @@ export default {
     },
     methods: {
         addNote(newNote) {
-            console.log(newNote);
+            // console.log(newNote);
+            
             notesService.save(newNote);
+            // const prmNotes = notesService.query();
+            // notes.push(newNote)
+            
 
         }
 
