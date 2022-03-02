@@ -3,9 +3,8 @@ export default {
     template: `
     <section class = "img-note">
 
-            
-            <img v-if ="img" :src="img" alt="">
-            
+            <img v-if ="img" :src="img" >
+                
     </section>
 
     `,

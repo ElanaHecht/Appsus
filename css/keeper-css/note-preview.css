@@ -1,19 +1,108 @@
-.note-preview{
-    min-width: 200px ;
+.note-preview {
+    width: 250px;
     height: fit-content;
     background-color: var(--white);
     margin: 10px;
     padding: 20px;
     box-shadow: var(--border-shadow-light);
     transition: .3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 
-.note-preview:hover{
-    transform: scale(1.02);
+.note-preview:hover .note-btn {
+    /* transform: scale(1.02); */
+    visibility: visible;
+    opacity: 100%;
 }
 
 
-.note-preview img{
+.note-preview img {
     width: 150px;
+}
+
+
+.note-btn {
+    /* background-color: red; */
+    width: 20px;
+    height: 20px;
+    transition: .4s;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.note-btn:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.note-options {
+    width: 150px;
+    /* position: relative; */
+}
+
+.color-note {
+    position: relative;
+    height: 35px;
+    /* background-color: red; */
+}
+
+.color-pick {
+    visibility: hidden;
+    opacity: 0;
+    transition: .4s;
+}
+
+.color-note:hover .color-pick {
+    /* background-color: red; */
+    visibility: visible;
+    opacity: 100%;
+    cursor:pointer;
+}
+
+
+.color-pick {
+    top: 35px;
+    left: -15px;
+    width: 180px;
+    height: 35px;
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+}
+
+.color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 0.5px solid black;
+}
+
+
+
+
+
+.color-yellow{
+    background-color: lightgoldenrodyellow;
+}
+.color-blue{
+    background-color: lightblue;
+}
+.color-red{
+    background-color: lightcoral;
+}
+.color-salmon{
+    background-color: lightsalmon;
+}
+.color-cyan{
+    background-color: lightcyan;
+}
+.color-green{
+    background-color: lightgreen;
+}
+.color-white{
+    background-color: white;
 }
