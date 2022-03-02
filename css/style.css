@@ -1,6 +1,9 @@
 
 
 
+
+
+
 /* main layout */
 @import './layout/main-container-layout.css';
 @import './layout/main-layout.css';
@@ -19,5 +22,7 @@
 @import './general-components/router-link.css';
 @import './general-components/user-msg.css';
 
+/* keeper-components */
 
+@import './keeper-css/note-preview.css'
 
