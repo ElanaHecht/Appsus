@@ -1,0 +1,13 @@
+.email-container {
+   margin-top: 100px;
+   display: flex;
+}
+
+.side-bar {
+   margin-top: 20px;
+   margin-right: 40px;
+}
+
+.email-compose {
+margin-bottom: 50px;
+}

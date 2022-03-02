@@ -1,39 +1,41 @@
 export default {
-   template: `
+    template: `
        <section class="email-filter">
+           <form @submit.prevent="setFilter" >
+               <button>🔍</button>
            <label>
-               Search
                <input 
-                   @input="setFilter" 
-                   type="text" 
-                   v-model="filterBy.txt" 
-                   placeholder="emails"
+                   type="search"
+                   @input="setFilter"
+                   v-model="filterBy.inputSearch" 
+                   placeholder="Search"
                />
-           </label>
-           <!-- <label>
+               </label>
+           <label>
                <select
-                   @input="setFilter" 
-                   type="text" 
-                   v-model="filterBy.txt" 
-                   placeholder="emails"
+                   @change="setFilter"
+                   v-model="filterBy.inputSelect"
                >
-               <option value=""></option>
+               <option value="ALL" >All</option>
+               <option value="READ" >Read</option>
+               <option value="UNREAD" >UnRead</option>
                </select>
-           </label> -->
+           </label>
+           </form>
        </section>
    `,
-   data() {
-       return {
-           filterBy: {
-              txt: '',
-               // toEmail: '',
-               // subject: '',
-           }
-       };
-   },
-   methods: {
-      setFilter() {
-          this.$emit('filtered', { ...this.filterBy });
-      }
-  }
+    data() {
+        return {
+            filterBy: {
+                inputSearch: null,
+                inputSelect: null,
+            },
+        };
+    },
+    methods: {
+        setFilter() {
+            console.log(`searched: ${this.inputVal}`, `selected: ${this.inputSelect}`);
+            this.$emit('filtered', { ...this.filterBy });
+        },
+    }
 }

@@ -1,7 +1,7 @@
 export default {
    template: `
        <section class="email-compose">
-          <button @click="openCompose">Compose</button>
+          <button class="compose-btn" @click="openCompose">Compose</button>
        </section>
    `,
    methods: {
