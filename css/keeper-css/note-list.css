@@ -1,5 +1,5 @@
 .notes-list{
-    background-color: lightgray;
+    background-color: var(--white);
     min-height: fit-content;
     flex-wrap: wrap;    
 }

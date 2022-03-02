@@ -15,7 +15,7 @@ export default{
     <div class="note-container">
             <note-txt v-if="note.txt" :txt="note.txt"></note-txt>
             <note-video v-if="note.video" :video="note.video"></note-video>
-            <note-todo v-if = "note-todo" :todo="note.todo"></note-todo>
+            <note-todo v-if = "note.todo" :todo="note.todo"></note-todo>
             <note-img v-if = "note.img" :img="note.img"></note-img>
         </div>
 

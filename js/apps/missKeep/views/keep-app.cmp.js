@@ -6,7 +6,7 @@ export default {
     template: `
        <section  class="keep-app app-layout main-layout">
                <h1>Keep App</h1>
-               <notes-input @addTxt = "addTxt" ></notes-input>
+               <notes-input @addNote = "addNote" ></notes-input>
                 <notes-list :notes="notes" v-if = "notes"></notes-list>
 
        </section>
@@ -37,9 +37,9 @@ export default {
         
     },
     methods: {
-        addTxt(str) {
-            console.log(str);
-            notesService.save(str);
+        addNote(newNote) {
+            console.log(newNote);
+            notesService.save(newNote);
 
         }
 

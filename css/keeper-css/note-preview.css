@@ -1,6 +1,14 @@
 .note-preview{
     min-width: 200px ;
     height: fit-content;
-    background-color: lightcyan;
+    background-color: var(--white);
     margin: 10px;
+    padding: 10px;
+    box-shadow: var(--border-shadow-light);
+    transition: .3s;
+}
+
+
+.note-preview:hover{
+    transform: scale(1.02);
 }
