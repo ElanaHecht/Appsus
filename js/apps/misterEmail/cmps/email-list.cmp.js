@@ -1,3 +1,5 @@
+import { emailService } from '../services/email-service.js';
+import { eventBus } from '../../../services/eventBus-service.js';
 import emailPreview from './email-preview.cmp.js'
 
 export default {
@@ -7,7 +9,7 @@ export default {
                <h1 v-if="!emails">You don't have any emails...</h1>
                <ul>
                   <li v-for="email in emails" :key="email.id">
-               <email-preview :email="email"/>
+               <email-preview :email="email" @remove="removeEmail"/>
                   </li>
                </ul>
             </section>
@@ -15,9 +17,11 @@ export default {
    components: {
       emailPreview,
    },
-   data() {
-      return {
-
+   methods: {
+      removeEmail(id, email) {
+         const idx = this.emails.findIndex((email) => email.id === id);
+         email.criteria.status = 'trash';
+         this.emails.splice(idx, 1)
       }
-   },
+   }
 }

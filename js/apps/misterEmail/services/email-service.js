@@ -39,7 +39,6 @@ function getEmptyEmail(name, to = '', subject = '', body = '', txt) {
         name,
         subject,
         body,
-        isRead: false,
         sentAt: 0,
         to,
         criteria: {

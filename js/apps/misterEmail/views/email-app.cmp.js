@@ -43,8 +43,20 @@ export default {
     computed: {
         emailsForDisplay() {
             if (!this.filterBy) return this.emails;
-            const regex = new RegExp(this.filterBy.inputVal, 'i');
-            return this.emails.filter(email => regex.test(email.criteria.txt));
+            let selected = this.filterBy.inputSelect;
+            let byRead = null;
+            switch (selected) {
+                case 'READ':
+                    byRead = this.emails.filter(email => email.criteria.isRead)
+                    break;
+                case 'UNREAD':
+                    byRead = this.emails.filter(email => !email.criteria.isRead)
+                    break;
+                case 'ALL':
+                    byRead = this.emails
+            }
+            const regex = new RegExp(this.filterBy.inputSearch, 'i');
+            return byRead.filter(email => regex.test(email.criteria.txt))
         }
     }
 }

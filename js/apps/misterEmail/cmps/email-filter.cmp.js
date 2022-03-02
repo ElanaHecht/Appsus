@@ -12,11 +12,8 @@ export default {
                />
                </label>
            <label>
-               <select
-                   @change="setFilter"
-                   v-model="filterBy.inputSelect"
-               >
-               <option value="ALL" >All</option>
+               <select @change="setFilter" v-model="filterBy.inputSelect">
+               <option value="ALL">All</option>
                <option value="READ" >Read</option>
                <option value="UNREAD" >UnRead</option>
                </select>
@@ -27,14 +24,13 @@ export default {
     data() {
         return {
             filterBy: {
-                inputSearch: null,
-                inputSelect: null,
+                inputSearch: '',
+                inputSelect: '',
             },
         };
     },
     methods: {
         setFilter() {
-            console.log(`searched: ${this.inputVal}`, `selected: ${this.inputSelect}`);
             this.$emit('filtered', { ...this.filterBy });
         },
     }
