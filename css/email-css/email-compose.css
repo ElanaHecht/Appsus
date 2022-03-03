@@ -10,7 +10,7 @@
    background-color: var(--lightgray);
    padding: 20px;
    margin: 20px;
-   width: 600px;
+   width: 100%;
    height: 400px;
 }
 
@@ -19,14 +19,19 @@ padding: 10px;
 background-color: #fff;
 }
 
+.email-send {
+   margin-top: 10px;
+   width: 100px;
+}
+
 .email-back {
    background-color: transparent;
    border: none;
+   float: right;
+   font-size: 1.5em;
+   margin-top: -30px;
 }
 
-.email-send {
-   width: 100px;
-}
 
 textarea {
    resize: none;

@@ -1,5 +1,5 @@
 import { eventBus } from '../../../services/eventBus-service.js';
-import emailDetails from './email-details.cmp.js';
+import emailDetails from '../views/email-details.cmp.js';
 
 export default {
    props: ['email'],
@@ -36,8 +36,7 @@ export default {
             email.criteria.isRead = false;
             this.isEmailRead = false;
          }
-         console.log(this.isEmailRead);
-         eventBus.emit('setRead', email)
+         eventBus.emit('markRead', email)
       },
       expand() {
          this.isExpanded = !this.isExpanded;

@@ -3,7 +3,6 @@
    left: 50%;
    top: 10%;
    transform: translate(-50%, -50%);
-   width: 520px;
    background-color: var(--white);
    height: 35px;
    justify-content: space-between;
@@ -12,7 +11,7 @@
 }
 
 .email-filter input {
-   width: 300px;
+   width: 400px;
    border: none;
    box-shadow: var(--border-shadow-medium);
    padding-left: 10px;
@@ -30,7 +29,8 @@
 }
 
 .email-filter select {
-   width: 70px;
+   cursor: pointer;
+   width: 130px;
    font-size: 1.2rem;
    justify-content: space-between;
    align-items: center;

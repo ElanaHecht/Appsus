@@ -12,12 +12,12 @@ export default {
                <email-filter @filtered="setFilter"/>
             <div class="email-container">
             <div class="side-bar">
-                <button class="compose-btn btn" @click="isList = false" >Compose</button>
+                <button class="compose-btn btn" @click="isList = !isList" >Compose</button>
                 <email-folder-list :emails="emails" @setFolder="setFolder"/>
             </div>
-                <email-compose v-if="!isList" @back="isList = true" @save="save" />
+                <email-compose v-if="!isList" @back="isList = true" @save="save"/>
                 <email-list v-else :emails="emailsForDisplay" @selected="selectEmail" @remove="remove" />
-                <email-edit :email="fullEmail"/>
+                <email-edit v-if="fullEmail" :email="fullEmail"/>
             </div>
        </section>
    `,
@@ -40,10 +40,11 @@ export default {
     },
     created() {
         emailService.query()
-        .then(emails => {
-            this.emails = emails
-        });
-        this.unsubscribe = eventBus.on('fullViewEmail', this.fullEmail);
+            .then(emails => {
+                this.emails = emails
+            });
+        this.unsubscribe = eventBus.on('fullViewEmail', this.email);
+        this.unsubscribe = eventBus.on('markRead',this.email);
     },
     methods: {
         setFilter(filterBy) {
@@ -54,14 +55,17 @@ export default {
         },
         selectEmail(id) {
             const email = this.emails.find((email => email.id === id))
-            // this.$router.push('/email/'+ id);
+            if (email.criteria.isRead) email.criteria.isRead = false;
+            else email.criteria.isRead = true;
+            emailService.save(email)
+                .then(email => {
+                    console.log(email);
+                });
         },
         setRead(email) {
             emailService.save(email)
                 .then(email => {
                     console.log(email);
-                    //   eventBus.emit('show-msg', { txt: 'trashed successfully', type: 'success' })
-                    //   this.$router.push('/email')
                 });
         },
         remove(id, email) {
@@ -71,8 +75,6 @@ export default {
             emailService.save(email)
                 .then(email => {
                     console.log(email);
-                    //   eventBus.emit('show-msg', { txt: 'trashed successfully', type: 'success' })
-                    //   this.$router.push('/email')
                 });
         },
         save(email) {
@@ -82,15 +84,22 @@ export default {
                     console.log(email);
                 })
         },
+        fullViewEmail(email) {
+            console.log('email!');
+            this.fullEmail = email;
+        }
     },
     computed: {
+progressPercent(){
+return '20%'
+},
         emailsForDisplay() {
             if (!this.filterBy) return this.emails;
             let selected = this.filterBy.inputSelect;
             let byRead = null;
             switch (selected) {
                 case 'READ':
-                    byRead = this.emails.filter(email => email.criteria.isRead)
+                    if (this.unRead > 0) return this.unRead--;
                     break;
                 case 'UNREAD':
                     byRead = this.emails.filter(email => !email.criteria.isRead)

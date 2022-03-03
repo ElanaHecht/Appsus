@@ -2,7 +2,7 @@ import { emailService } from '../services/email-service.js'
 
 export default {
    template: `
-      <section class="email-compose app-layout main-layout">
+      <section class="email-compose main-layout">
          <form @submit.prevent="save" class="flex column">
             <div class="input-label">To
             <input type="text" v-model="emailToAdd.address" />
@@ -13,7 +13,7 @@ export default {
             <textarea v-model="emailToAdd.body"></textarea>
             <button class="email-send">Send</button>
          </form>
-         <button @click="goBack" class="email-back">🗑️</button>
+         <button @click="goBack" class="email-back" title="Discard">🗑️</button>
       </section>
    `,
    data() {
