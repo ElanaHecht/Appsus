@@ -5,6 +5,7 @@
     justify-content: space-between;
     box-shadow: var(--border-shadow-medium);
     margin-bottom: 20px;
+    margin: 0 auto;
     /* padding:10px; */
 }
 

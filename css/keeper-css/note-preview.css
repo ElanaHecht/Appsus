@@ -1,8 +1,8 @@
 .note-preview {
-    width: 250px;
+    width: 220px;
     height: fit-content;
     background-color: var(--white);
-    margin: 10px;
+    margin: 5px;
     padding: 20px;
     box-shadow: var(--border-shadow-light);
     transition: .3s;

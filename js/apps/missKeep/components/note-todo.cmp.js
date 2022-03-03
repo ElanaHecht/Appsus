@@ -1,30 +1,28 @@
+import todoLi from './todo-li.cmp.js';
+
+
 export default{
     props:['todos'],
     template:`
         <section class = 'todo-list'>
-            <ul>
-                <li v-for="(todo,index) in todos" :key="index">
-                    {{todo}}
-                    {{index}}
-                </li>
+            <ul v-for="(todo,index) in todos" :key="index">
+            <todo-li :todo = 'todo'></todo-li>
             </ul>
 
         </section>
     `,
     data(){
         return{
-            checked: null
         }
     },
+    components:{
+        todoLi
+    },
     methods:{
-        // markTodo(idx){
-        //     (this.checked === idx) ? (this.checked = null) : (this.checked = idx);
-        //     console.log(idx);
-        // }
+        
+    
     },
     computed:{
-        // liCheck(idx){
-        //     if(this.checked === idx) return {checked : true}
-        // }
+        
     }
 }

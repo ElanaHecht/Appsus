@@ -35,14 +35,16 @@ export default {
     },
     methods: {
         addNote(newNote) {
-            
-            
-            if(newNote.inputType === 'todo'){
-                const todoList = newNote.inputVal.split(',');
-                
+
+
+            if (newNote.inputType === 'todo') {
+                const todos = newNote.inputVal.split(',');
+                const todoList = todos.map(todo => (
+                    { txt: todo, doneAt: null }
+                ));
                 newNote.inputVal = todoList;
-            } 
-                
+            }
+
             notesService.save(newNote);
 
             setTimeout(() => {
