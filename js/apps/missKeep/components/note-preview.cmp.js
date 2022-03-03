@@ -17,7 +17,7 @@ export default{
             <note-video v-if="note.video" :video="note.video"></note-video>
             <note-todo v-if = "note.todo" :todo="note.todo"></note-todo>
             <note-img v-if = "note.img" :img="note.img"></note-img>
-            <note-options @selectedColor = "changeColor"></note-options>
+            <note-options @selectedColor = "changeColor" :noteId = "note.id"></note-options>
         <!-- </div> -->
 
 

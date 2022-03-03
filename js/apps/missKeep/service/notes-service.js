@@ -47,7 +47,8 @@ function getEmptynote() {
         img: null,
         todo: null,
         video: null,
-        sound: null
+        sound: null,
+        style:null
 
 
     };

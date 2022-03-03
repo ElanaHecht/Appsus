@@ -1,7 +1,8 @@
-import noteColorPick from "./note-color-pick.cmp.js"
+import noteColorPick from './note-color-pick.cmp.js';
+import { eventBus } from '../../../services/eventBus-service.js';
 
 export default{
-
+    props:['noteId'],
     template:`
         <section class = "note-options flex space">
             <div class="color-note">
@@ -34,7 +35,8 @@ export default{
             this.$emit('selectedColor', color);
         },
         removeNote(){
-
+            eventBus.emit('removeNote', this.noteId);
+            // console.log('removing note');
         },
 
         duplicateNote(){

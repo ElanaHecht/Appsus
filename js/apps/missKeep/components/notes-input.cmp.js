@@ -9,7 +9,7 @@ export default {
             
         <div class="input-container">
             <form action="submit" @submit.prevent = "addNote" class = "flex" >
-                    <input type="text" v-model="inputVal" :placeholder = "inputTypeIcon">
+                    <input type="text" v-model="inputVal" :placeholder = "inputTypeIcon" >
                     
                 <div class="input-type-container flex" >
                     <input type="radio" id = "txt" value = "txt" name= "type" v-model="inputType"  >
@@ -26,38 +26,27 @@ export default {
             </form>
         </div>
                     <pre>{{inputType}}</pre>
-                    <!-- <pre>{{ckecked}}</pre> -->
-    
-                <!-- <div class="input-type" @click = "inputType"><strong>A</strong></div>
-                    <div class="input-type" @click = "inputType">🖼️</div>
-                    <div class="input-type" @click = "inputType">📝</div>
-                    <div class="input-type" @click = "inputType">🎬</div>
-                    <div class="input-type" @click = "inputType">🔊</div> -->
-
+                 
         </section>
 
     `,
 
     data() {
         return {
-            inputType: null,
+            inputType: 'txt',
             inputVal: null,
-
         };
     },
     methods: {
         addNote() {
-            if(!this.inputVal) return;
-            // if (inputType !== null) {
+            if (!this.inputVal || !this.inputVal) return;
+            const newNote = {
+                inputType: this.inputType,
+                inputVal: this.inputVal
+            };
 
-                const newNote = {
-                    inputType: this.inputType,
-                    inputVal: this.inputVal
-                };
+            this.$emit('addNote', newNote);
 
-                this.$emit('addNote', newNote);
-            
-            // console.dir(ev);
 
 
 
@@ -66,14 +55,16 @@ export default {
 
     },
     computed: {
-        inputTypeIcon(){
-           if(this.inputType === 'txt' ) return 'whats on your mind'
-           if(this.inputType === 'img' ) return 'Enter image URL'
-           if(this.inputType === 'sound' ) return 'Upload your tune here'
-           if(this.inputType === 'video' ) return 'Upload your video here'
-           if(this.inputType === 'todo' ) return 'Enter your do list here'
+        inputTypeIcon() {
+            if (this.inputType === 'txt') return 'whats on your mind';
+            if (this.inputType === 'img') return 'Enter image URL';
+            if (this.inputType === 'sound') return 'Upload your tune here';
+            if (this.inputType === 'video') return 'Upload your video here';
+            if (this.inputType === 'todo') return 'Enter your do list here';
 
-        }
+        },
+        
+        
 
 
 

@@ -79,6 +79,11 @@
     height: 20px;
     border-radius: 50%;
     border: 0.5px solid rgb(0, 0, 0);
+    transition: .3s;
+}
+
+.color:hover{
+    transform: scale(1.1);
 }
 
 
