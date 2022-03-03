@@ -1,6 +1,6 @@
 import { emailService } from '../services/email-service.js'
 import emailFilter from '../cmps/email-filter.cmp.js'
-import emailCompose from '../cmps/email-compose.cmp.js'
+import emailCompose from './email-compose.cmp.js'
 import emailFolderList from '../cmps/email-folder-list.cmp.js'
 import emailList from '../cmps/email-list.cmp.js'
 
@@ -10,7 +10,7 @@ export default {
                <email-filter @filtered="setFilter"/>
             <div class="email-container">
             <div class="side-bar">
-               <email-compose />
+            <router-link class="compose-btn btn" :to="'/email/compose'">Compose</router-link>
                <email-folder-list :emails="emails" @setFolder="setFolder"/>
             </div>
                <email-list :emails="emailsForDisplay" />

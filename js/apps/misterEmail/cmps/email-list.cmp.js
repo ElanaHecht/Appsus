@@ -1,5 +1,5 @@
-import { emailService } from '../services/email-service.js';
-import { eventBus } from '../../../services/eventBus-service.js';
+// import { emailService } from '../services/email-service.js';
+// import { eventBus } from '../../../services/eventBus-service.js';
 import emailPreview from './email-preview.cmp.js'
 
 export default {
