@@ -7,7 +7,8 @@ export const notesService = {
     save,
     getEmptynote,
     get,
-    update
+    update,
+    duplicate
 };
 
 const NOTES_KEY = 'notesDB';
@@ -39,16 +40,16 @@ function save(note) {
     return storageService.post(NOTES_KEY, newNote);
 }
 
+function duplicate(dupe){
+    return storageService.post(NOTES_KEY,dupe)
+}
+
 function getEmptynote() {
     return {
         id: utilService.makeId(),
-        txt: null,
+        
         isPinned: false,
-        img: null,
-        todo: null,
-        video: null,
-        sound: null,
-        style:null
+       
 
 
     };
