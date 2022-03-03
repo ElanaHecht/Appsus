@@ -2,4 +2,5 @@
     background-color: var(--white);
     min-height: fit-content;
     flex-wrap: wrap;    
+    justify-content: space-evenly;
 }

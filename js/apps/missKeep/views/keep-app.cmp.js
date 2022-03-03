@@ -7,7 +7,7 @@ import { utilService } from '../../../services/util-service.js';
 export default {
     template: `
        <section  class="keep-app app-layout main-layout">
-            <h1>Keep App</h1>
+       
             <notes-input @addNote = "addNote" ></notes-input>
             <notes-list :notes="notes" v-if = "notes"></notes-list>
 

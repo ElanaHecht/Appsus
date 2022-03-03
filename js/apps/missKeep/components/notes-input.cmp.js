@@ -35,6 +35,7 @@ export default {
         return {
             inputType: 'txt',
             inputVal: null,
+            
         };
     },
     methods: {
@@ -48,7 +49,7 @@ export default {
             };
 
             this.$emit('addNote', newNote);
-
+            this.inputVal = null
         },
 
 

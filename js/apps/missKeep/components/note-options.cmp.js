@@ -9,7 +9,6 @@ export default{
                 <div class="note-btn "  title ="Change color">🎨</div>
                 <note-color-pick @selectedColor = "changeColor"></note-color-pick>
             </div>
-
             <div class="note-btn edit-note" @click = "editNote" title = "Edit">✍</div>
             <div class="note-btn duplicate-note" alt="Duplicate" @click="duplicateNote()" title = "Duplicate">👯</div>
             <div class="note-btn remove-note" @click="removeNote" title = "Remove">❌</div>
@@ -19,7 +18,7 @@ export default{
     `,
     data(){
         return{
-            // noteColor:'white'
+            editMode: false
             
         }
 
@@ -42,7 +41,8 @@ export default{
         },
 
         editNote(){
-
+            this.editMode = true;
+            console.log('hello');
         }
     },
     computed:{
