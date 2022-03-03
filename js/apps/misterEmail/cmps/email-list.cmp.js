@@ -1,5 +1,3 @@
-// import { emailService } from '../services/email-service.js';
-// import { eventBus } from '../../../services/eventBus-service.js';
 import emailPreview from './email-preview.cmp.js'
 
 export default {
@@ -8,8 +6,8 @@ export default {
             <section class="email-list">
                <h1 v-if="!emails">You don't have any emails...</h1>
                <ul>
-                  <li v-for="email in emails" :key="email.id">
-               <email-preview :email="email" @remove="removeEmail"/>
+                  <li v-for="email in emails" :key="email.id" class="list-style" @click="select(email.id)">
+               <email-preview :email="email" @remove="removeEmail" @setRead="setRead"/>
                   </li>
                </ul>
             </section>
@@ -19,15 +17,13 @@ export default {
    },
    methods: {
       removeEmail(id, email) {
-         const idx = this.emails.findIndex((email) => email.id === id);
-         this.emails.splice(idx, 1)
-         email.criteria.status = 'trash';
-         emailService.save(email)
-            .then(email => {
-               console.log(email);
-               //   eventBus.emit('show-msg', { txt: 'trashed successfully', type: 'success' })
-               //   this.$router.push('/email')
-            });
+         this.$emit('remove', email)
+      },
+      setRead(email) {
+         this.$emit('setRead', email)
+      },
+      select(id) {
+         this.$emit('selected', id)
       }
    }
 }

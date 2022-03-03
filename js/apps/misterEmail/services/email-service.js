@@ -66,6 +66,7 @@ function _createEmails() {
 
 function _creatEmail(name, address, subject, body) {
     const email = getEmptyEmail(name, address, subject, body)
+    email.criteria.txt = name
     email.id = utilService.makeId()
     return email;
 }
