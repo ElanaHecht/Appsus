@@ -5,3 +5,32 @@
    border-radius: 30px;
    border: none;
 }
+
+.email-compose {
+   background-color: var(--lightgray);
+   padding: 20px;
+   margin: 20px;
+   width: 600px;
+   height: 400px;
+}
+
+.email-compose .text-label{
+padding: 10px;
+background-color: #fff;
+}
+
+.email-back {
+   background-color: transparent;
+   border: none;
+}
+
+.email-send {
+   width: 100px;
+}
+
+textarea {
+   resize: none;
+   border: none;
+   padding: 10px;
+   height: 250px;
+}

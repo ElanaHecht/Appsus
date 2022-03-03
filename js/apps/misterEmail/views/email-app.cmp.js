@@ -1,8 +1,8 @@
 import { emailService } from '../services/email-service.js'
 import emailFilter from '../cmps/email-filter.cmp.js'
-import emailCompose from './email-compose.cmp.js'
 import emailFolderList from '../cmps/email-folder-list.cmp.js'
 import emailList from '../cmps/email-list.cmp.js'
+import emailCompose from '../cmps/email-compose.cmp.js'
 
 export default {
     template: `
@@ -10,10 +10,11 @@ export default {
                <email-filter @filtered="setFilter"/>
             <div class="email-container">
             <div class="side-bar">
-            <router-link class="compose-btn btn" :to="'/email/compose'">Compose</router-link>
-               <email-folder-list :emails="emails" @setFolder="setFolder"/>
+                <button class="compose-btn btn" @click="isList = false" >Compose</button>
+                <email-folder-list :emails="emails" @setFolder="setFolder"/>
             </div>
-               <email-list :emails="emailsForDisplay" />
+                <email-compose v-if="!isList" @back="isList = true"/>
+                <email-list v-else :emails="emailsForDisplay" />
             </div>
        </section>
    `,
@@ -28,6 +29,7 @@ export default {
             emails: null,
             filterBy: null,
             folder: 'inbox',
+            isList: true,
         }
     },
     created() {
@@ -42,7 +44,7 @@ export default {
         },
         setFolder(folder) {
             this.folder = folder;
-        }
+        },
     },
     computed: {
         emailsForDisplay() {

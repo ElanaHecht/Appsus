@@ -20,8 +20,14 @@ export default {
    methods: {
       removeEmail(id, email) {
          const idx = this.emails.findIndex((email) => email.id === id);
-         email.criteria.status = 'trash';
          this.emails.splice(idx, 1)
+         email.criteria.status = 'trash';
+         emailService.save(email)
+            .then(email => {
+               console.log(email);
+               //   eventBus.emit('show-msg', { txt: 'trashed successfully', type: 'success' })
+               //   this.$router.push('/email')
+            });
       }
    }
 }
