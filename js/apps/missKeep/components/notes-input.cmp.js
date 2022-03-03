@@ -12,16 +12,16 @@ export default {
                     <input type="text" v-model="inputVal" :placeholder = "inputTypeIcon" >
                     
                 <div class="input-type-container flex" >
-                    <input type="radio" id = "txt" value = "txt" name= "type" v-model="inputType"  >
-                    <label for="txt"><strong>A</strong></label>
-                    <input type="radio" id = "todo" value = "todo" name= "type" v-model="inputType">
-                    <label for="todo">📝</label>
-                    <input type="radio" id = "img" value = "img" name= "type" v-model="inputType">
-                    <label for="img">🖼️</label>
+                    <input type="radio" id = "txt" value = "txt" name= "type" v-model="inputType" >
+                    <label for="txt"  title="Text"><strong>A</strong></label>
+                    <input type="radio" id = "todo" value = "todo" name= "type" v-model="inputType" >
+                    <label for="todo" title="Todo list">📝</label>
+                    <input type="radio" id = "img" value = "img" name= "type" v-model="inputType" >
+                    <label for="img" title="Image">🖼️</label>
                     <input type="radio" id = "video" value = "video" name= "type" v-model="inputType">
-                    <label for="video">🎬</label>
+                    <label for="video"  title = "Video">🎬</label>
                     <input type="radio" id = "sound" value = "sound" name= "type" v-model="inputType">
-                    <label for="sound">🔊</label>
+                    <label for="sound" title="Sound">🔊</label>
                 </div>
             </form>
         </div>
@@ -40,15 +40,14 @@ export default {
     methods: {
         addNote() {
             if (!this.inputVal || !this.inputVal) return;
+            
+            
             const newNote = {
                 inputType: this.inputType,
                 inputVal: this.inputVal
             };
 
             this.$emit('addNote', newNote);
-
-
-
 
         },
 

@@ -35,7 +35,14 @@ export default {
     },
     methods: {
         addNote(newNote) {
-
+            
+            
+            if(newNote.inputType === 'todo'){
+                const todoList = newNote.inputVal.split(',');
+                
+                newNote.inputVal = todoList;
+            } 
+                
             notesService.save(newNote);
 
             setTimeout(() => {
@@ -43,6 +50,7 @@ export default {
                 prmNotes.then(res => this.notes = res);
             }, 100);
         },
+
         removeNote(id) {
             console.log('removing', id);
             notesService.remove(id)
@@ -53,12 +61,14 @@ export default {
                 });
 
         },
+
         changeColor(newColor) {
             const idx = this.notes.findIndex(note => note.id === newColor.id);
             this.notes[idx].color = `background-color:${newColor.color}`;
             notesService.update(this.notes[idx]);
             console.log('changing color', newColor);
         },
+
         duplicateNote(note) {
             const newNote = { ...note };
 

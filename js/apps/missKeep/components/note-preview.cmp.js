@@ -10,15 +10,11 @@ export default{
     props:['note'],
     template:`
     <section class = "note-preview" :style="note.color">
-        
-    
             <note-txt v-if="note.txt" :txt="note.txt"></note-txt>
             <note-video v-if="note.video" :video="note.video"></note-video>
-            <note-todo v-if = "note.todo" :todo="note.todo"></note-todo>
+            <note-todo v-if = "note.todo" :todos="note.todo"></note-todo>
             <note-img v-if = "note.img" :img="note.img"></note-img>
             <note-options  :note = "note"></note-options>
-        
-
     </section>
     
     
