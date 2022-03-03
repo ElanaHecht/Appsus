@@ -12,7 +12,12 @@ export default{
             <div class="note-btn edit-note" @click = "editNote" title = "Edit">✍</div>
             <div class="note-btn duplicate-note" alt="Duplicate" @click="duplicateNote()" title = "Duplicate">👯</div>
             <div class="note-btn remove-note" @click="removeNote" title = "Remove">❌</div>
-            
+            <div v-if = "editMode" class = "note-edit">
+                <input type="text">
+                <button>Update</button>
+                <button @click = "closeEdit" >Cancel</button>
+            </div>
+
         </section>
     
     `,
@@ -43,6 +48,9 @@ export default{
         editNote(){
             this.editMode = true;
             console.log('hello');
+        },
+        closeEdit(){
+            this.editMode = false
         }
     },
     computed:{
