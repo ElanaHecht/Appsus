@@ -6,7 +6,7 @@ export default {
             <section class="email-list">
                <h1 v-if="!emails">You don't have any emails...</h1>
                <ul>
-                  <li v-for="email in emails" :key="email.id" class="list-style" @click="select(email.id)">
+                  <li v-for="email in emails" :key="email.id"  @click="select(email.id)">
                <email-preview :email="email" @remove="removeEmail" @setRead="setRead"/>
                   </li>
                </ul>
@@ -17,7 +17,7 @@ export default {
    },
    methods: {
       removeEmail(id, email) {
-         this.$emit('remove', email)
+         this.$emit('remove', id, email)
       },
       setRead(email) {
          this.$emit('setRead', email)

@@ -1,23 +1,22 @@
 import { eventBus } from '../../../services/eventBus-service.js';
+import emailDetails from './email-details.cmp.js';
 
 export default {
    props: ['email'],
    template: `
-            <section class="email-preview" :class="readStyle" @click="isExpanded = !isExpanded" @mouseover="isHover = true" @mouseleave="isHover = false">
-               <h1>{{email.name}}</h1>
-               <h1>{{email.subject}}</h1>
-               <p>{{formatBody}}</p>
-               <p v-if="!isHover">{{formatTime}}</p>
-               <div v-else><button @click="remove(email.id, email)">🗑️</button><button @click="markRead(email)">✉️</button></div>
-                  <div class="expand-email" v-if="isExpanded">
-                     <button @click="fullText">📖</button>
-                     <h2>{{email.subject}}</h2>
-                     <h3>{{email.name}}</h3><h1>{{email.address}}</h1>
-                     <p>{{email.body}}</p>
-
-               </div>
+            <section class="email-preview" @click="expand" :class="readStyle" @mouseover="isHover = true" @mouseleave="isHover = false">
+               <div class="preview-container flex">
+               <span class="email-name">{{email.name}}</span>
+               <span class="email-subject">{{email.subject}} <span class="email-body">{{formatBody}}</span></span>
+               <span class="email-time" v-if="!isHover">{{formatTime}}</span>
+               <span v-else><button @click="remove(email.id, email)">🗑️</button><button @click="markRead(email)">✉️</button></span>
+            </div>
+               <email-details v-if="isExpanded" :email="email" />
             </section>
    `,
+   components: {
+      emailDetails,
+   },
    data() {
       return {
          isHover: false,
@@ -27,7 +26,7 @@ export default {
    },
    methods: {
       remove(id, email) {
-         this.emit('remove', id, email);
+         this.$emit('remove', id, email);
       },
       markRead(email) {
          if (!this.isEmailRead) {
@@ -37,16 +36,17 @@ export default {
             email.criteria.isRead = false;
             this.isEmailRead = false;
          }
-         this.$emit('setRead', email)
+         console.log(this.isEmailRead);
+         eventBus.emit('setRead', email)
       },
-      fullText(){
-
+      expand() {
+         this.isExpanded = !this.isExpanded;
       }
    },
    computed: {
       formatBody() {
-const body = this.email.body.slice(0, 75);
-return `${body}...`
+         const body = this.email.body.slice(0, 50);
+         return `${body}...`
       },
       formatTime() {
          const date = new Date(this.email.sentAt)

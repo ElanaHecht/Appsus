@@ -1,0 +1,17 @@
+.email details .email-header{
+   display: flex;
+   flex-wrap: wrap;
+align-items: baseline;
+justify-content: flex-start;
+padding: 10px 0px;
+}
+
+.email-details .body {
+   padding: 0px 20px;
+   text-align: left;
+}
+
+.email-details .body {
+   padding: 0px 20px;
+   text-align: left;
+}

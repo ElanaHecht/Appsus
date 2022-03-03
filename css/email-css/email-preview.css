@@ -3,7 +3,22 @@
 }
 
 .email-preview {
-   border-top: 0.5px solid var(--lightgray);
-   border-bottom: 0.5px solid var(--lightgray);
-   padding: 10px;
+   position: relative;
+   background: white;
+   height: 50px;
+   align-items: center;
+   max-width: 100%;
+   padding: 20px;
+}
+
+.email-preview .email-name {
+font-weight: 600;
+}
+
+.email-preview .email-subject {
+font-weight: 600;
+}
+
+.email-preview span {
+margin-left: 20px;
 }

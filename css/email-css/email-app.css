@@ -4,8 +4,12 @@
 }
 
 .side-bar {
-   margin-top: 20px;
+   margin-bottom: 50px;
    margin-right: 40px;
+}
+
+.side-bar button {
+   margin-bottom: 50px;
 }
 
 .email-compose {

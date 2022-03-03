@@ -24,15 +24,12 @@ export default {
    methods: {
       save() {
          this.emailToAdd.criteria.status = 'sent';
-         emailService.save(this.emailToAdd)
-            .then(email => {
-               console.log(email);
-               //   eventBus.emit('show-msg', { txt: 'Sent successfully', type: 'success' })
-               //   this.$router.push('/email')
-            });
+         this.$emit('save', this.emailToAdd)
+         //   eventBus.emit('show-msg', { txt: 'Sent successfully', type: 'success' })
+         //   this.$router.push('/email')
       },
-      goBack() {
-         this.$emit('back')
-      }
+   goBack() {
+      this.$emit('back')
    }
+}
 }

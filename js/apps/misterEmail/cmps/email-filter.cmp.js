@@ -1,23 +1,23 @@
 export default {
     template: `
        <section class="email-filter">
-           <form @submit.prevent="setFilter" >
+           <form @submit.prevent="setFilter" class="flex">
+               <div class="email-search">
                <button>🔍</button>
-           <label>
                <input 
                    type="search"
                    @input="setFilter"
                    v-model="filterBy.inputSearch" 
                    placeholder="Search"
                />
-               </label>
-           <label>
+               </div>
+           <div class="select-read">
                <select @change="setFilter" v-model="filterBy.inputSelect">
                <option value="ALL">All</option>
                <option value="READ" >Read</option>
                <option value="UNREAD" >UnRead</option>
                </select>
-           </label>
+           </div>
            </form>
        </section>
    `,
@@ -25,7 +25,7 @@ export default {
         return {
             filterBy: {
                 inputSearch: '',
-                inputSelect: '',
+                inputSelect: 'ALL',
             },
         };
     },

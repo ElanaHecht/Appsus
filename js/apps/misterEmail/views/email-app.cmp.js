@@ -1,8 +1,10 @@
-import { emailService } from '../services/email-service.js'
-import emailFilter from '../cmps/email-filter.cmp.js'
-import emailFolderList from '../cmps/email-folder-list.cmp.js'
-import emailList from '../cmps/email-list.cmp.js'
-import emailCompose from '../views/email-compose.cmp.js'
+import { eventBus } from '../../../services/eventBus-service.js';
+import { emailService } from '../services/email-service.js';
+import emailFilter from '../cmps/email-filter.cmp.js';
+import emailFolderList from '../cmps/email-folder-list.cmp.js';
+import emailList from '../cmps/email-list.cmp.js';
+import emailCompose from '../views/email-compose.cmp.js';
+import emailEdit from '../views/email-edit.cmp.js';
 
 export default {
     template: `
@@ -13,8 +15,9 @@ export default {
                 <button class="compose-btn btn" @click="isList = false" >Compose</button>
                 <email-folder-list :emails="emails" @setFolder="setFolder"/>
             </div>
-                <email-compose v-if="!isList" @back="isList = true"/>
-                <email-list v-else :emails="emailsForDisplay" @selected="selectEmail" @setRead="setRead" @remove="remove" />
+                <email-compose v-if="!isList" @back="isList = true" @save="save" />
+                <email-list v-else :emails="emailsForDisplay" @selected="selectEmail" @remove="remove" />
+                <email-edit :email="fullEmail"/>
             </div>
        </section>
    `,
@@ -23,20 +26,24 @@ export default {
         emailCompose,
         emailFolderList,
         emailList,
+        emailEdit,
     },
     data() {
         return {
+            fullEmail: null,
             emails: null,
             filterBy: null,
             folder: 'inbox',
             isList: true,
+            openDetails: false
         }
     },
     created() {
         emailService.query()
-            .then(emails => {
-                this.emails = emails
-            });
+        .then(emails => {
+            this.emails = emails
+        });
+        this.unsubscribe = eventBus.on('fullViewEmail', this.fullEmail);
     },
     methods: {
         setFilter(filterBy) {
@@ -57,7 +64,7 @@ export default {
                     //   this.$router.push('/email')
                 });
         },
-        remove(email) {
+        remove(id, email) {
             const idx = this.emails.findIndex((email) => email.id === id);
             this.emails.splice(idx, 1)
             email.criteria.status = 'trash';
@@ -67,7 +74,14 @@ export default {
                     //   eventBus.emit('show-msg', { txt: 'trashed successfully', type: 'success' })
                     //   this.$router.push('/email')
                 });
-        }
+        },
+        save(email) {
+            emailService.save(email)
+                .then(email => {
+                    this.isList = true;
+                    console.log(email);
+                })
+        },
     },
     computed: {
         emailsForDisplay() {
@@ -103,5 +117,8 @@ export default {
             const regex = new RegExp(this.filterBy.inputSearch, 'i');
             return byRead.filter(email => regex.test(email.criteria.txt))
         }
+    },
+    unmounted() {
+        this.unsubscribe();
     }
 }
