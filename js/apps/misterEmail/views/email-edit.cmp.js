@@ -1,7 +1,9 @@
+import { eventBus } from '../../../services/eventBus-service.js';
+
+
 export default {
-   props: ['fullEmail'],
    template: `
-            <section class="email-edit">
+            <section v-if="emailToRead" class="email-edit">
                <div class="full-header">
                   <div class="email-header">
                      <div>{{email.subject}}</div>
@@ -12,6 +14,24 @@ export default {
                   </div>
                </div>
                   <div class="body">{{email.body}}</div>
+                  <button @click="remove(emailToRead.id)">🗑️</button>
             </section>
    `,
+  data() {
+   return {
+       emailToRead: emailService.getEmptyEmail(),
+   };
+},
+created() {
+   const id = this.$route.params.emailId;
+   if (id) {
+       emailService.get(id)
+           .then(email => this.emailToRead = email);
+   }
+},
+methods: {
+   finalRemove(id) {
+eventBus.emit('finalRemove', id)
+   }
+},
 }

@@ -1,5 +1,6 @@
 import { eventBus } from '../../../services/eventBus-service.js';
 import { emailService } from '../services/email-service.js';
+import { storageService } from '../../../services/async-storage-service.js';
 import emailFilter from '../cmps/email-filter.cmp.js';
 
 export default {
@@ -27,6 +28,7 @@ export default {
         return {
             emails: null,
             filterBy: null,
+            unReadCount: 0
         }
     },
     created() {
@@ -35,22 +37,24 @@ export default {
                 this.emails = emails
                 console.log(this.emails);
             });
-        this.unsubscribe = eventBus.on('sent', this.email);
-        this.unsubscribe = eventBus.on('back', this.email);
+        this.$router.push('/email/inbox')
+        // this.unsubscribe = eventBus.on('save', this.email);
+        // this.unsubscribe = eventBus.on('updateUnread', this.count);
+
     },
     methods: {
         setFilter(filterBy) {
             this.filterBy = filterBy;
         },
-        remove(id, email) {
-            const idx = this.emails.findIndex((email) => email.id === id);
-            this.emails.splice(idx, 1)
-            email.criteria.status = 'trash';
+        finalRemove(id) {
             return storageService.remove(STORAGE_KEY, id);
         },
         save(email) {
             return storageService.post(STORAGE_KEY, email);
         },
+        updateUnread(count){
+            this.unReadCount = count;
+        }
     },
     computed: {
         emailsForDisplay() {

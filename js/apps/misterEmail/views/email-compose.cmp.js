@@ -29,11 +29,10 @@ export default {
          this.emailToAdd.criteria.status = 'sent';
          this.emailToAdd.criteria.txt = `${this.emailToAdd.name}${this.emailToAdd.subject}${this.emailToAdd.body}`
          eventBus.emit('save', this.emailToAdd)
-         //   eventBus.emit('show-msg', { txt: 'Sent successfully', type: 'success' })
            this.$router.push('/email/inbox')
       },
    goBack() {
-      eventBus.emit('back')
+      this.$router.push('/email/inbox')
    }
 
 }
