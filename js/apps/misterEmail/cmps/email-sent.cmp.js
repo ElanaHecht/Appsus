@@ -1,4 +1,3 @@
-
 import { emailService } from '../services/email-service.js';
 
 import emailPreview from './email-preview.cmp.js'
@@ -24,12 +23,10 @@ export default {
       }
    },
    created() {
-      this.folder = this.$router.name
-      console.log(this.folder);
       emailService.query()
-         .then(emails => {
-            this.emails = emails.filter( email => email.criteria.status === this.folder)
-         });
+      .then(emails => {
+         this.emails = emails.filter( email => email.criteria.status === 'sent')
+      });
    },
    methods: {
       removeEmail(id, email) {

@@ -13,12 +13,40 @@
 
 .email-preview .email-name {
 font-weight: 600;
+font-weight: 600;
+overflow: hidden;
+text-overflow: ellipsis;
+height: 1rem;
+white-space: nowrap;
 }
 
 .email-preview .email-subject {
 font-weight: 600;
+overflow: hidden;
+text-overflow: ellipsis;
+height: 1rem;
+white-space: nowrap;
+}
+
+.email-preview .email-body {
+font-weight: 600;
+overflow: hidden;
+text-overflow: ellipsis;
+height: 1rem;
+white-space: nowrap;
 }
 
 .email-preview span {
 margin-left: 20px;
+font-weight: 600;
+overflow: hidden;
+text-overflow: ellipsis;
+height: 1rem;
+white-space: nowrap;
+}
+
+.email-preview button {
+   background-color: transparent;
+   border: none;
+   font-size: 0.8em;
 }

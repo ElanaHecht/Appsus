@@ -35,7 +35,7 @@ function save(email) {
 // Factory Method:
 function getEmptyEmail(name='', address = '', subject = '', body = '', status='inbox') {
 const email = {
-        id: '',
+        id: utilService.makeId(),
         subject,
         body,
         sentAt: Date.now(),
@@ -67,7 +67,6 @@ function _createEmails() {
 function _creatEmail(name, address, subject, body) {
     const email = getEmptyEmail(name, address, subject, body)
     email.criteria.txt = `${name} ${subject} ${body}`
-    email.id = utilService.makeId()
     return email;
 }
 

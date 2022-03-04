@@ -1,4 +1,3 @@
-
 import { emailService } from '../services/email-service.js';
 
 import emailPreview from './email-preview.cmp.js'
@@ -19,16 +18,13 @@ export default {
    },
    data() {
       return {
-         emails: null,
-         folder: null
+         emails: null
       }
    },
    created() {
-      this.folder = this.$router.name
-      console.log(this.folder);
       emailService.query()
          .then(emails => {
-            this.emails = emails.filter( email => email.criteria.status === this.folder)
+            this.emails = emails.filter( email => email.criteria.status === 'inbox')
          });
    },
    methods: {

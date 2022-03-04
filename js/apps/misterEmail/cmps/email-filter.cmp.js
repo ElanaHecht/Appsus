@@ -2,6 +2,7 @@ export default {
     template: `
        <section class="email-filter">
            <form @submit.prevent="setFilter" class="flex">
+               
                <button>🔍</button>
                <input type="search" @input="setFilter" v-model="filterBy.inputSearch" placeholder="Search" />           
                <select @change="setFilter" v-model="filterBy.inputSelect">

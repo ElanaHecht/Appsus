@@ -11,7 +11,8 @@ export default {
                <span class="email-time" v-if="!isHover">{{formatTime}}</span>
                <span v-else><button @click="remove(email.id, email)">🗑️</button><button @click="markRead(email)">✉️</button></span>
             </div>
-               <email-details v-if="isExpanded" :email="email" />
+            <router-link :to="'email/'+email.id"></router-link>
+               <!-- <email-details v-if="isExpanded" :email="email" /> -->
             </section>
    `,
    components: {
@@ -26,17 +27,11 @@ export default {
    },
    methods: {
       remove(id, email) {
-         this.$emit('remove', id, email);
+         eventBus.emit('remove', id, email);
       },
       markRead(email) {
-         if (!this.isEmailRead) {
-            email.criteria.isRead = true;
-            this.isEmailRead = true;
-         } else {
-            email.criteria.isRead = false;
-            this.isEmailRead = false;
-         }
-         eventBus.emit('markRead', email)
+         email.criteria.isRead = !this.isEmailRead
+         this.isEmailRead = email.criteria.isRead
       },
       expand() {
          this.isExpanded = !this.isExpanded;

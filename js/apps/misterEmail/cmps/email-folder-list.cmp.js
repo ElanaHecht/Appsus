@@ -2,32 +2,40 @@ export default {
    props: ['emails'],
    template: `
        <section class="email-folder-list">
-          <ul class="list-style">
-          <!-- {{emailsUnread}} -->
-             <li @click="setFolder">Inbox <span>0</span></li> 
-             <li @click="setFolder">Sent</li>
-             <li @click="setFolder">Trash</li>
-             <li @click="setFolder">Draft</li>
-          </ul>
+          <!-- <ul class="list-style">
+             <li>Inbox <span>0</span></li>
+             <li>Sent</li>
+             <li>Trash</li>
+             <li>Draft</li>
+          </ul> -->
+            <form @change = "setFolder" >
+               <div class="folder-list flex column" >
+                  <label for="inbox">Inbox</label>
+                     <input type="radio" id = "inbox" value = "inbox" v-model="folder" >
+                  <label for="sent">Sent</label>
+                     <input type="radio"  id = "sent" value="sent" name= "type" v-model="folder" >
+                  <label>Trash</label>
+                     <input type="radio"  id = "trash" value= "trash" v-model="folder" >
+                  <label>Draft</label>
+                     <input type="radio"  id = "draft" value= "draft" v-model="folder">
+               </div>
+            </form>
        </section>
    `,
    created() {
    },
    data() {
       return {
-         status: '',
-         unRead: 0,
+         folder: 'inbox',
       }
    },
    methods: {
-      setFolder(ev) {
-         this.status = ev.target.innerText;
-         this.$emit('setFolder', this.status)
+      setFolder() {
+      console.log(this.folder);
+         this.$emit('setFolder', this.folder)
       }
    },
-   computed: {
-      // emailsUnread() {
-      //    return this.emails.length
-      // }
+   watch: {
+      
    }
 }

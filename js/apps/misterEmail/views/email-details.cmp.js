@@ -1,11 +1,10 @@
 // import { eventBus } from '../../../services/eventBus-service.js';
-import { emailService } from '../services/email-service.js';
-
+// import { emailService } from '../services/email-service.js';
 
 export default {
    props: ['email'],
    template: `
-            <section v-if="email" class="email-details">
+            <section class="email-details">
                <div class="email-header">
                   <div>{{email.subject}}</div>
                   <div>
@@ -15,19 +14,9 @@ export default {
                </div>
                   <div class="body">{{email.body}}</div>
                   <div>
-                     <button>⏹️</button>
-                     <!-- <router-link to="/email">Back</router-link> -->
+                  <router-link to="/email/edit">Full view</router-link>
                   </div>
             </section>
    `,
-         data() {
-            return {
-                email: null
-            };
-        },
-        created() {
-            const id = this.$route.params.emailId;
-            emailService.get(id)
-                .then(email => this.email = email);
-        },
+      
 }

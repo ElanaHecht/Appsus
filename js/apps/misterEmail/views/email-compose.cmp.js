@@ -1,4 +1,5 @@
 import { emailService } from '../services/email-service.js'
+import { utilService } from '../../../services/util-service.js'
 
 export default {
    template: `
@@ -23,13 +24,16 @@ export default {
    },
    methods: {
       save() {
+         if (!this.emailToAdd.id) this.emailToAdd.id = utilService.makeId();
          this.emailToAdd.criteria.status = 'sent';
+         this.emailToAdd.criteria.txt = this.emailToAdd.subject
          this.$emit('save', this.emailToAdd)
          //   eventBus.emit('show-msg', { txt: 'Sent successfully', type: 'success' })
-         //   this.$router.push('/email')
+           this.$router.push('/email')
       },
    goBack() {
       this.$emit('back')
    }
+
 }
 }

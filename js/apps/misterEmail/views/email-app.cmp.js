@@ -12,12 +12,24 @@ export default {
                <email-filter @filtered="setFilter"/>
             <div class="email-container">
             <div class="side-bar">
-                <button class="compose-btn btn" @click="isList = !isList" >Compose</button>
-                <email-folder-list :emails="emails" @setFolder="setFolder"/>
+           
+            <router-link class="email-compose" to="/email/compose">Compose</router-link>
+            <div class="flex column">
+            <router-link class="email-folder-list" to="/email/inbox">Inbox</router-link>
+            <router-link class="email-folder-list" to="/email/sent">Sent</router-link>
+            <router-link class="email-folder-list" to="/email/trash">Trash</router-link>
+            <router-link class="email-folder-list" to="/email/draft">Draft</router-link>
             </div>
-                <email-compose v-if="!isList" @back="isList = true" @save="save"/>
+       
+                <!-- <button class="compose-btn btn" @click="isList = !isList" >Compose</button> -->
+                <!-- <email-folder-list @setFolder="setFolder"/> -->
+            </div>
+       
+            <router-view class="view"></router-view>
+
+                <!-- <email-compose v-if="!isList" @back="isList = true" @save="save"/>
                 <email-list v-else :emails="emailsForDisplay" @selected="selectEmail" @remove="remove" />
-                <email-edit v-if="fullEmail" :email="fullEmail"/>
+                <email-edit v-if="fullEmail" :email="fullEmail"/> -->
             </div>
        </section>
    `,
@@ -42,16 +54,17 @@ export default {
         emailService.query()
             .then(emails => {
                 this.emails = emails
+                console.log(this.emails);
             });
-        this.unsubscribe = eventBus.on('fullViewEmail', this.email);
-        this.unsubscribe = eventBus.on('markRead',this.email);
+        // this.unsubscribe = eventBus.on('fullViewEmail', this.email);
+        // this.unsubscribe = eventBus.on('markRead', this.email);
     },
     methods: {
         setFilter(filterBy) {
             this.filterBy = filterBy;
         },
-        setFolder(folder) {
-            this.folder = folder;
+        setFolder() {
+            this.folder = ev.target.innerText;
         },
         selectEmail(id) {
             const email = this.emails.find((email => email.id === id))
@@ -76,12 +89,17 @@ export default {
                 .then(email => {
                     console.log(email);
                 });
+            emailService.query()
+                .then(emails => {
+                    this.emails = emails
+                    console.log(this.emails);
+                });
         },
         save(email) {
             emailService.save(email)
                 .then(email => {
-                    this.isList = true;
                     console.log(email);
+                    this.isList = true;
                 })
         },
         fullViewEmail(email) {
@@ -90,41 +108,13 @@ export default {
         }
     },
     computed: {
-progressPercent(){
-return '20%'
-},
         emailsForDisplay() {
             if (!this.filterBy) return this.emails;
-            let selected = this.filterBy.inputSelect;
-            let byRead = null;
-            switch (selected) {
-                case 'READ':
-                    if (this.unRead > 0) return this.unRead--;
-                    break;
-                case 'UNREAD':
-                    byRead = this.emails.filter(email => !email.criteria.isRead)
-                    break;
-                case 'ALL':
-                    byRead = this.emails
-                    break;
-            }
-            // let byFolder = null;
-            // switch (this.folder) {
-            //     case 'Inbox':
-            //         byFolder = this.emails.filter(email => email.criteria.status = 'inbox')
-            //         break;
-            //     case 'Sent':
-            //         byFolder = this.emails.filter(email => email.criteria.status = 'sent')
-            //         break;
-            //     case 'Trash':
-            //         byFolder = this.emails.filter(email => email.criteria.status = 'trash')
-            //         break;
-            //     case 'Draft':
-            //         byFolder = this.emails.filter(email => email.criteria.status = 'draft')
-            //         break;
-            // }
             const regex = new RegExp(this.filterBy.inputSearch, 'i');
-            return byRead.filter(email => regex.test(email.criteria.txt))
+            const selected = this.filterBy.inputSelect
+            var a = this.emails.filter(email => (regex.test(email.criteria.txt)))
+            var b = a.filter(email => (selected === 'ALL') || ((selected === 'READ') === email.criteria.isRead))
+            return b
         }
     },
     unmounted() {

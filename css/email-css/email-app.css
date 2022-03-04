@@ -13,5 +13,16 @@
 }
 
 .email-compose {
-margin-bottom: 50px;
+   cursor: pointer;
+   padding: 20px;
+   width: 400px;
+   border-radius: 30px;
+   border: none;
+   margin-bottom: 50px;
+   text-decoration: none;
+}
+
+.view {
+   width: 100%;
+   height: 500px;
 }
