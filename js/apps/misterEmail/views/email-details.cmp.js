@@ -14,7 +14,7 @@ export default {
                </div>
                   <div class="body">{{email.body}}</div>
                   <div>
-                  <router-link to="/email/edit">Full view</router-link>
+                  <router-link :to="'/email/'+email.id">Full view</router-link>
                   </div>
             </section>
    `,

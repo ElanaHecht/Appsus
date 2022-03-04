@@ -1,4 +1,6 @@
 import { emailService } from '../services/email-service.js';
+import { storageService } from '../../../services/async-storage-service.js';
+
 import { eventBus } from '../../../services/eventBus-service.js';
 import emailPreview from './email-preview.cmp.js'
 
@@ -8,7 +10,7 @@ export default {
                <h1 v-if="!emails">You don't have any emails...</h1>
                <ul>
                   <li v-for="email in emails" :key="email.id"  @click="select(email.id)">
-               <email-preview :email="email" @remove="removeEmail" @setRead="setRead"/>
+               <email-preview :email="email" @remove="remove()" @setRead="setRead"/>
                   </li>
                </ul>
             </section>
@@ -29,14 +31,11 @@ export default {
       });
    },
    methods: {
-      removeEmail(id, email) {
-         eventBus.emit('remove', id, email)
-      },
-      setRead(email) {
-         eventBus.emit('setRead', email)
-      },
-      select(id) {
-         eventBus.emit('selected', id)
-      }
+      remove(id, email) {
+         const idx = this.emails.findIndex((email) => email.id === id);
+         this.emails.splice(idx, 1)
+         email.criteria.status = 'trash';
+         storageService.push('STORAGE_KEY', email)
+     },
    }
 }
