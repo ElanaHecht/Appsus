@@ -1,0 +1,24 @@
+.notes-filter-container{
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 4vh;
+    left: 50%;
+}
+
+
+
+
+.notes-filter-container input{
+    width: 200px;
+    height: 20px;
+    border: none;
+    box-shadow: var(--border-shadow-medium);
+    padding-left: 10px;
+
+}
+
+.notes-filter-container select{
+    box-shadow: var(--border-shadow-medium);
+    height: 20px;
+    border: none;
+}

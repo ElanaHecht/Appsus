@@ -2,10 +2,11 @@ import todoLi from './notes-todo-li.cmp.js';
 
 
 export default{
-    props:['todos'],
+    props:['note'],
     template:`
         <section class = 'todo-list'>
-            <ul v-for="(todo,index) in todos" :key="index">
+            <h3>  {{note.title}}</h3>
+            <ul v-for="(todo,index) in note.todo" :key="index">
             <todo-li :todo = 'todo'></todo-li>
             </ul>
 

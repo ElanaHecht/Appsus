@@ -3,40 +3,60 @@ import notesInput from '../components/notes-input.cmp.js';
 import { notesService } from '../service/notes-service.js';
 import { eventBus } from '../../../services/eventBus-service.js';
 import { utilService } from '../../../services/util-service.js';
+import notesFilter from '../components/notes-filter.cmp.js';
+import pinnedNotes from '../components/pinned-notes.cmp.js';
 
 export default {
     template: `
        <section  class="keep-app app-layout main-layout">
-       
+            <notes-filter @filtered = 'setFilter'></notes-filter>
             <notes-input @addNote = "addNote" ></notes-input>
-            <notes-list :notes="notes" v-if = "notes"></notes-list>
+            <pinned-notes :notes="pinnedNotes" ></pinned-notes>
+            <notes-list :notes="notesForDisplay" v-if = "notes"></notes-list>
 
        </section>
    `,
     components: {
         notesList,
-        notesInput
+        notesInput,
+        notesFilter,
+        pinnedNotes
 
 
     },
     data() {
         return {
+            allNotes: null,
             notes: null,
-
+            pinnedNotes: null,
+            filterBy: null
         };
     },
     created() {
         const prmNotes = notesService.query();
-        prmNotes.then(res => this.notes = res);
+        prmNotes.then(res => this.allNotes = res);
+        setTimeout(() => {
+            this.sortNotes();
+            console.log(this.pinnedNotes);
+        }, 0);
+
         this.unsubscribe = eventBus.on('removeNote', this.removeNote);
         this.unsubscribe = eventBus.on('changeColor', this.changeColor);
         this.unsubscribe = eventBus.on('duplicateNote', this.duplicateNote);
         this.unsubscribe = eventBus.on('updateNote', this.updateNote);
+        this.unsubscribe = eventBus.on('pinNote', this.pinNote);
 
     },
     methods: {
-        addNote(newNote) {
 
+        setFilter(filterBy) {
+            this.filterBy = filterBy;
+            console.log(filterBy);
+
+        },
+
+        addNote(newNote) {
+            console.log(newNote);
 
             if (newNote.inputType === 'todo') {
                 const todos = newNote.inputVal.split(',');
@@ -46,12 +66,12 @@ export default {
                 newNote.inputVal = todoList;
             };
 
-            if(newNote.inputType === 'video'){
-                const videoAdress = newNote.inputVal.replace('watch?v=' , 'embed/')
+            if (newNote.inputType === 'video') {
+                const videoAdress = newNote.inputVal.replace('watch?v=', 'embed/');
                 newNote.inputVal = videoAdress;
             }
 
-            notesService.save(newNote)
+            notesService.save(newNote);
 
             setTimeout(() => {
                 const prmNotes = notesService.query();
@@ -101,7 +121,74 @@ export default {
                 ));
                 noteForUpdate.todo = todoList;
             }
-            notesService.update(noteForUpdate)
+            notesService.update(noteForUpdate);
+        },
+
+        pinNote(id) {
+            console.log('pin', id);
+            const noteToPin = this.allNotes.find(note => note.id === id);
+            noteToPin.isPinned = !noteToPin.isPinned;
+            notesService.update(noteToPin);
+            this.sortNotes();
+        },
+
+        sortNotes() {
+            this.notes = this.allNotes.filter(note => !note.isPinned);
+            this.pinnedNotes = this.allNotes.filter(note => note.isPinned);
+        }
+
+
+
+    },
+
+    computed: {
+        notesForDisplay() {
+            if (!this.filterBy) return this.notes;
+
+            if (this.filterBy.type === 'all') {
+                const regex = new RegExp(this.filterBy.input, 'i');
+                return this.notes.filter(note => regex.test(note.txt) ||
+                    regex.test(note.title));
+            }
+
+
+
+            if (this.filterBy.type === 'txt') {
+                if (this.filterBy.input.length > 0) {
+                    const regex = new RegExp(this.filterBy.input, 'i');
+                    return this.notes.filter(note => regex.test(note.txt));
+                } else {
+                    return this.notes.filter(note => note.txt);
+
+                }
+            }
+            if (this.filterBy.type === 'img') {
+                if (this.filterBy.input.length > 0) {
+                    const regex = new RegExp(this.filterBy.input, 'i');
+                    return this.notes.filter(note => regex.test(note.title) && note.img);
+                } else {
+                    return this.notes.filter(note => note.img);
+
+                }
+            }
+            if (this.filterBy.type === 'todo') {
+                if (this.filterBy.input.length > 0) {
+                    const regex = new RegExp(this.filterBy.input, 'i');
+                    return this.notes.filter(note => regex.test(note.title) && note.todo);
+                } else {
+                    return this.notes.filter(note => note.todo);
+
+                }
+            }
+            if (this.filterBy.type === 'video') {
+                if (this.filterBy.input.length > 0) {
+                    const regex = new RegExp(this.filterBy.input, 'i');
+                    return this.notes.filter(note => regex.test(note.title) && note.video);
+                } else {
+                    return this.notes.filter(note => note.video);
+
+                }
+            }
         }
 
 

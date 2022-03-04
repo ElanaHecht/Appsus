@@ -1,9 +1,10 @@
 .note-preview {
     width: 200px;
-    height: fit-content;
+    min-height: 150px;
     background-color: var(--white);
     margin: 5px;
-    padding: 20px;
+    padding: 10px;
+    padding-top: 20px;
     box-shadow: var(--border-shadow-light);
     transition: .3s;
     display: flex;
@@ -11,7 +12,12 @@
     align-items: center;
     position: relative;
     text-align: center;
+    justify-content: space-between;
+    border-radius: 2px;
+}
 
+.note-preview h3{
+margin-bottom: 20px;
 }
 
 
@@ -24,6 +30,8 @@
 
 .note-preview img {
     width: 150px;
+    margin-bottom: 10px;
+    border-radius: 2px;
 }
 
 
@@ -69,8 +77,8 @@
 
 
 .color-pick {
-    top: 35px;
-    left: -15px;
+    top: 33px;
+    left: -27px;
     width: 180px;
     height: 35px;
     position: absolute;
@@ -120,11 +128,15 @@
     /* background-color: red; */
     width: 80%;
     min-height: fit-content;
-    word-break: break-all;
+    word-break: break-word;
     margin-bottom: 20px;
     
 }
 
-
+.pin{
+    position: absolute;
+    left: 15px;
+    top: 10px;
+}
 
 

@@ -1,24 +1,23 @@
 export default {
-    props: ['video'],
+    props: ['note'],
     template: `
      
 
-        <section v-if = "video" class = 'note-video'>
-            <!-- <video :src="video" type="video/mp4"></video> --> 
-                <iframe width="175" height="150" :src="video" ng-show="showvideo"></iframe>
-            <!-- <p alt="text"><strong>A</strong></p> -->
+        <section v-if = "videoSource" class = 'note-video'>
+                <h3>{{note.title}}</h3>
+                <iframe width="175" height="150" :src="videoSource" ng-show="showvideo"></iframe>
         </section>
     
     
     `,
     data(){
         return{
-            videoSource:this.video
+            videoSource:this.note.video
 
         }
     },
     created(){
-       console.log(this.video);
+    //    console.log(this.videoSource);
     },
     methods:{
 

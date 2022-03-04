@@ -37,6 +37,9 @@ function save(note) {
     const noteType = note.inputType;
     const newNote = getEmptynote();
     newNote[noteType] = note.inputVal;
+    
+    if(note.inputTitle) newNote.title = note.inputTitle;
+
     return storageService.post(NOTES_KEY, newNote);
 }
 
