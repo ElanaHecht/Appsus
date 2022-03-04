@@ -25,7 +25,6 @@ export default {
                 </div>
             </form>
         </div>
-                    <pre>{{inputType}}</pre>
                  
         </section>
 

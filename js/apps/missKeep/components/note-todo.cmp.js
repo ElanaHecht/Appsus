@@ -1,4 +1,4 @@
-import todoLi from './todo-li.cmp.js';
+import todoLi from './notes-todo-li.cmp.js';
 
 
 export default{

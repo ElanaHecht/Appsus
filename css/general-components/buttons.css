@@ -1,0 +1,27 @@
+
+
+
+
+
+
+
+.btn-edit{
+    width: 70px;
+    height: 20px;
+    border-radius: 5px;
+    color: var(--white);
+    border: none;
+    transition: .3s;
+}
+.btn-confirm-edit{
+    background-color: var(--confirm);
+}
+.btn-cancel-edit{
+    background-color: var(--alarm);
+}
+
+
+.btn-edit:hover{
+    transform:translateY(-1.5px);
+   cursor: pointer;
+}

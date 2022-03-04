@@ -31,6 +31,7 @@ export default {
         this.unsubscribe = eventBus.on('removeNote', this.removeNote);
         this.unsubscribe = eventBus.on('changeColor', this.changeColor);
         this.unsubscribe = eventBus.on('duplicateNote', this.duplicateNote);
+        this.unsubscribe = eventBus.on('updateNote', this.updateNote);
 
     },
     methods: {
@@ -77,6 +78,25 @@ export default {
             newNote.id = utilService.makeId();
             notesService.duplicate(newNote);
             this.notes.push(newNote);
+        },
+
+        updateNote(newContent) {
+            console.log(newContent);
+            const noteForUpdate = this.notes.find(note => note.id === newContent.id);
+            console.log('note to update', noteForUpdate);
+
+            if (noteForUpdate.txt) noteForUpdate.txt = newContent.content;
+            if (noteForUpdate.video) noteForUpdate.video = newContent.content;
+            if (noteForUpdate.img) noteForUpdate.img = newContent.content;
+            if (noteForUpdate.sound) noteForUpdate.sound = newContent.content;
+            if (noteForUpdate.todo) {
+                const todos = newContent.content.split(',');
+                const todoList = todos.map(todo => (
+                    { txt: todo, doneAt: null }
+                ));
+                noteForUpdate.todo = todoList;
+            }
+            notesService.update(noteForUpdate)
         }
 
 

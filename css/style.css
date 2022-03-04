@@ -21,6 +21,7 @@
 @import './general-components/home-page.css';
 @import './general-components/router-link.css';
 @import './general-components/user-msg.css';
+@import './general-components/buttons.css';
 
 /* keeper-components */
 
@@ -29,6 +30,7 @@
 @import './keeper-css/input-container.css';
 @import './keeper-css/image-note.css';
 @import './keeper-css/todo-list.css';
+@import './keeper-css/update-input.css';
 
 /* email-components */
 
