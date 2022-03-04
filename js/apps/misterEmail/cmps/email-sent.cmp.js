@@ -1,5 +1,5 @@
 import { emailService } from '../services/email-service.js';
-
+import { eventBus } from '../../../services/eventBus-service.js';
 import emailPreview from './email-preview.cmp.js'
 
 export default {
@@ -30,13 +30,13 @@ export default {
    },
    methods: {
       removeEmail(id, email) {
-         this.$emit('remove', id, email)
+         eventBus.emit('remove', id, email)
       },
       setRead(email) {
-         this.$emit('setRead', email)
+         eventBus.emit('setRead', email)
       },
       select(id) {
-         this.$emit('selected', id)
+         eventBus.emit('selected', id)
       }
    }
 }
