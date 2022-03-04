@@ -44,9 +44,14 @@ export default {
                     { txt: todo, doneAt: null }
                 ));
                 newNote.inputVal = todoList;
+            };
+
+            if(newNote.inputType === 'video'){
+                const videoAdress = newNote.inputVal.replace('watch?v=' , 'embed/')
+                newNote.inputVal = videoAdress;
             }
 
-            notesService.save(newNote);
+            notesService.save(newNote)
 
             setTimeout(() => {
                 const prmNotes = notesService.query();
