@@ -1,10 +1,7 @@
 .notes-list{
     background-color: var(--white);
-    min-height: fit-content;
-    flex-wrap: wrap;    
-    justify-content: space-evenly;
+    min-height: 60vh;
+    columns: 150px 5;
+   
 }
 
-.pinned-notes-container{
-    
-}

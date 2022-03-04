@@ -2,7 +2,7 @@
     width: 200px;
     min-height: 150px;
     background-color: var(--white);
-    margin: 5px;
+    margin-bottom: 10px;
     padding: 10px;
     padding-top: 20px;
     box-shadow: var(--border-shadow-light);
@@ -14,6 +14,9 @@
     text-align: center;
     justify-content: space-between;
     border-radius: 2px;
+    page-break-inside: avoid;
+         break-inside: avoid;
+
 }
 
 .note-preview h3{
