@@ -1,15 +1,11 @@
 
+export default {
 
-
-export default{
-    
-   
-    props:['txt'],
-    template:`
-
+    props: ['txt'],
+    template: `
         <section class = 'note-txt'>      
         <p>{{txt}}</p>
         </section>
     
     `
-}
+};

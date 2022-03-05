@@ -6,14 +6,11 @@ export default {
     <section>            
             <form action="submit" @submit.prevent = "addNote" class = "note-form" >
                 <div class = "note-inputs">
-                    
                     <transition name = "slide-fade">
                         <input type="text" class = "note-title-input" v-if = "isTitle"  v-model="inputTitle" placeholder = "Title" @keyup.enter="addNote">
                     </transition>
                     <input type="text" class = "note-content-input" :class="{switch: isTitle}" v-model="inputVal" :placeholder = "inputTypeIcon" @keyup.enter="addNote" >
                 </div>
-                    
-
                     <div class="input-type-container flex" >
                         <input type="radio" id = "txt" value = "txt" name= "type" v-model="inputType" >
                         <label for="txt"  title="Text" @click = "noTitle"><strong>A</strong></label>
@@ -61,8 +58,6 @@ export default {
         noTitle() {
             this.isTitle = false;
         }
-
-
     },
     computed: {
         inputTypeIcon() {
@@ -71,12 +66,6 @@ export default {
             if (this.inputType === 'sound') return 'Upload your tune here';
             if (this.inputType === 'video') return 'Enter youtube URL here';
             if (this.inputType === 'todo') return 'Enter your do list here';
-
         },
-
-
-
-
-
     }
 };

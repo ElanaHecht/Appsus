@@ -13,13 +13,12 @@ export default {
     },
     created() {
         this.unsubscribe = eventBus.on('show-Msg', this.showMsg);
-    
+
     },
     methods: {
         showMsg(msg) {
             this.msg = msg;
             setTimeout(() => {
-               console.log(this.msg);
                 this.msg = null;
             }, 2000);
         }

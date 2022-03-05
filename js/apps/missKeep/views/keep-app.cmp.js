@@ -37,7 +37,6 @@ export default {
         prmNotes.then(res => this.allNotes = res);
         setTimeout(() => {
             this.sortNotes();
-            console.log(this.pinnedNotes);
         }, 0);
 
         this.unsubscribe = eventBus.on('removeNote', this.removeNote);
@@ -51,12 +50,9 @@ export default {
 
         setFilter(filterBy) {
             this.filterBy = filterBy;
-            console.log(filterBy);
-
         },
 
         addNote(newNote) {
-            console.log(newNote);
 
             if (newNote.inputType === 'todo') {
                 const todos = newNote.inputVal.split(',');
@@ -70,13 +66,16 @@ export default {
                 const videoAdress = newNote.inputVal.replace('watch?v=', 'embed/');
                 newNote.inputVal = videoAdress;
             }
-
             notesService.save(newNote);
 
             setTimeout(() => {
                 const prmNotes = notesService.query();
-                prmNotes.then(res => this.notes = res);
+                prmNotes.then(res => this.allNotes = res);
+            }, 0);
+            setTimeout(() => {
+                this.sortNotes();
             }, 100);
+
         },
 
         removeNote(id) {
@@ -86,6 +85,7 @@ export default {
                     this.allNotes.splice(idx, 1);
                     this.sortNotes();
                 });
+            eventBus.emit('show-Msg', 'Note removed');
 
         },
 
@@ -94,7 +94,8 @@ export default {
             this.allNotes[idx].color = `background-color:${newColor.color}`;
             notesService.update(this.allNotes[idx]);
             this.sortNotes();
-            console.log('changing color', newColor);
+            eventBus.emit('show-Msg', 'Color changed');
+
         },
 
         duplicateNote(note) {
@@ -104,6 +105,8 @@ export default {
             notesService.duplicate(newNote);
             this.allNotes.push(newNote);
             this.sortNotes();
+            eventBus.emit('show-Msg', 'Note duplicated');
+
         },
 
         updateNote(newContent) {
@@ -122,12 +125,13 @@ export default {
             }
             this.sortNotes();
             notesService.update(noteForUpdate);
+            eventBus.emit('show-Msg', 'Note updated');
 
         },
 
         pinNote(id) {
-            console.log('pin', id);
             const noteToPin = this.allNotes.find(note => note.id === id);
+
             noteToPin.isPinned = !noteToPin.isPinned;
             notesService.update(noteToPin);
             this.sortNotes();

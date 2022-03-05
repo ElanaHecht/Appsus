@@ -39,16 +39,13 @@ export default {
     methods: {
         changeColor(color) {
             eventBus.emit('changeColor', { id: this.note.id, color: color });
-            eventBus.emit('show-Msg', 'Color changed');
         },
         removeNote() {
             eventBus.emit('removeNote', this.note.id);
-            eventBus.emit('show-Msg', 'Note removed');
         },
 
         duplicateNote() {
             eventBus.emit('duplicateNote', this.note);
-            eventBus.emit('show-Msg', 'Note duplicated');
         },
 
         editNote() {
@@ -59,7 +56,6 @@ export default {
         },
         updateNote() {
             eventBus.emit('updateNote', { id: this.note.id, content: this.updateContent });
-            eventBus.emit('show-Msg', 'Note updated');
 
             this.editMode = false;
         },
@@ -67,8 +63,5 @@ export default {
             eventBus.emit('pinNote', this.note.id);
         }
     },
-    computed: {
-
-    }
-
+   
 };

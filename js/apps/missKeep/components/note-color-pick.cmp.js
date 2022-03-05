@@ -14,12 +14,6 @@ export default {
         </section>
     
     `,
-    date() {
-        return {
-
-
-        };
-    },
     methods: {
         pickedColor(ev) {
             const color = ev.path[0].attributes.name.nodeValue;

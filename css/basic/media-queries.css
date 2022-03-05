@@ -37,9 +37,7 @@
         width: 75px;
 
     }
-
-
-
+   
 
     .note-form {
         display: flex;
@@ -253,7 +251,7 @@
     }
 
     .note-preview {
-        width: 180px;
+        width: 200px;
     }
 
 
