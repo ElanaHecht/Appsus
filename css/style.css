@@ -10,10 +10,12 @@
 
 /* basic */
 @import './basic/base.css';
+@import './basic/media-queries.css';
 
 /* setup */
 @import './setup/helpers.css';
 @import './setup/vars.css';
+@import './setup/typography.css';
 
 /* general components */
 @import './general-components/header.css';
