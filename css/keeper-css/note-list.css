@@ -1,7 +1,10 @@
 .notes-list{
     background-color: var(--white);
     min-height: 60vh;
-    columns: 150px 5;
+    columns: 200px 5;
    
 }
 
+.pinned-list{
+    columns: 200px 5;
+}

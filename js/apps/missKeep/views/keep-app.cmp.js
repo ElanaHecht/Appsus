@@ -83,17 +83,19 @@ export default {
             console.log('removing', id);
             notesService.remove(id)
                 .then(() => {
-                    const idx = this.notes.findIndex((note) => note.id === id);
-                    this.notes.splice(idx, 1);
+                    const idx = this.allNotes.findIndex((note) => note.id === id);
+                    this.allNotes.splice(idx, 1);
+                    this.sortNotes();
                     console.log('note removed successfuly!!');
                 });
 
         },
 
         changeColor(newColor) {
-            const idx = this.notes.findIndex(note => note.id === newColor.id);
-            this.notes[idx].color = `background-color:${newColor.color}`;
-            notesService.update(this.notes[idx]);
+            const idx = this.allNotes.findIndex(note => note.id === newColor.id);
+            this.allNotes[idx].color = `background-color:${newColor.color}`;
+            notesService.update(this.allNotes[idx]);
+            this.sortNotes();
             console.log('changing color', newColor);
         },
 
@@ -102,13 +104,12 @@ export default {
 
             newNote.id = utilService.makeId();
             notesService.duplicate(newNote);
-            this.notes.push(newNote);
+            this.allNotes.push(newNote);
+            this.sortNotes();
         },
 
         updateNote(newContent) {
-            console.log(newContent);
-            const noteForUpdate = this.notes.find(note => note.id === newContent.id);
-            console.log('note to update', noteForUpdate);
+            const noteForUpdate = this.allNotes.find(note => note.id === newContent.id);
 
             if (noteForUpdate.txt) noteForUpdate.txt = newContent.content;
             if (noteForUpdate.video) noteForUpdate.video = newContent.content;
@@ -121,6 +122,7 @@ export default {
                 ));
                 noteForUpdate.todo = todoList;
             }
+            this.sortNotes();
             notesService.update(noteForUpdate);
         },
 

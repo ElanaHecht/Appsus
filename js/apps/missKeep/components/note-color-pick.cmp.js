@@ -8,8 +8,8 @@ export default{
         <div @click = "pickedColor" name = "lightgoldenrodyellow" class="color color-yellow"></div>
         <div @click = "pickedColor" name = "lightblue" class="color color-blue"></div>
         <div @click = "pickedColor" name = "lightcoral" class="color color-red"></div>
-        <div @click = "pickedColor" name = "lightsalmon" class="color color-salmon"></div>
-        <div @click = "pickedColor" name = "lightcyan" class="color color-cyan"></div>
+        <div @click = "pickedColor" name = "rgb(168, 14, 168)" class="color color-purple"></div>
+        <div @click = "pickedColor" name = "gold" class="color color-gold"></div>
         <div @click = "pickedColor" name = "lightgreen" class="color color-green"></div>
         <div @click = "pickedColor" name = "white" class="color color-white"></div>
         </section>
@@ -31,26 +31,3 @@ export default{
 }
 
 
-
-
-// .color-yellow{
-//     background-color: lightgoldenrodyellow;
-// }
-// .color-blue{
-//     background-color: lightblue;
-// }
-// .color-red{
-//     background-color: lightcoral;
-// }
-// .color-salmon{
-//     background-color: lightsalmon;
-// }
-// .color-cyan{
-//     background-color: lightcyan;
-// }
-// .color-green{
-//     background-color: lightgreen;
-// }
-// .color-white{
-//     background-color: white;
-// }

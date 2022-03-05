@@ -6,6 +6,7 @@ export default{
     template:`
         <section class = 'pinned-list main-layout'>
               <note-preview v-for="note in notes" :key="note.id" :note = "note"></note-preview>
+              <!-- <hr> -->
         </section>  
     `,
     data(){

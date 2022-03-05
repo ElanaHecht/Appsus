@@ -10,7 +10,7 @@ export default{
     props:['note'],
     template:`
     <section class = "note-preview" :style="note.color">
-            <div v-if ="note.isPinned" class="pin">📌</div>
+            <div v-if ="note.isPinned" class="pin" title="Pinned">📌</div>
             <note-txt v-if="note.txt" :txt="note.txt"></note-txt>
             <note-video v-if="note.video" :note="note"></note-video>
             <note-todo v-if = "note.todo" :note ="note"></note-todo>

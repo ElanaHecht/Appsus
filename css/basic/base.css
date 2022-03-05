@@ -23,4 +23,6 @@ ul,li {
    list-style-type: none;
  }
 
-
+input{
+   box-shadow: var(--border-shadow-medium);
+}
