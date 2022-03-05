@@ -2,3 +2,9 @@
     font-family: righteous;
     src: url(../fonts/Righteous-Regular.ttf);
 }
+
+
+@font-face {
+    font-family: roboto;
+    src: url(../fonts/Roboto-Regular.ttf);
+}

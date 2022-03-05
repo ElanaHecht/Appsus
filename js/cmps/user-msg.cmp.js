@@ -2,8 +2,8 @@ import { eventBus } from '../services/eventBus-service.js';
 
 export default {
     template: `
-        <section v-if="msg" class="user-msg" :class="msg.type">
-            <p>{{msg.txt}}</p>
+        <section v-if="msg" class="user-msg" >
+            <p>{{msg}}</p>
         </section>
     `,
     data() {
@@ -12,14 +12,16 @@ export default {
         };
     },
     created() {
-        this.unsubscribe = eventBus.on('show-msg', this.showMsg);
+        this.unsubscribe = eventBus.on('show-Msg', this.showMsg);
+    
     },
     methods: {
         showMsg(msg) {
             this.msg = msg;
             setTimeout(() => {
+               console.log(this.msg);
                 this.msg = null;
-            }, 3000);
+            }, 2000);
         }
     },
     unmounted() {

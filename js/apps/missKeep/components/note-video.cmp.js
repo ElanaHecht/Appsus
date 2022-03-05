@@ -10,16 +10,15 @@ export default {
     
     
     `,
-    data(){
-        return{
-            videoSource:this.note.video
+    data() {
+        return {
+            videoSource: this.note.video
 
-        }
+        };
     },
-    created(){
-    //    console.log(this.videoSource);
+    created() {
     },
-    methods:{
+    methods: {
 
     }
-}
+};

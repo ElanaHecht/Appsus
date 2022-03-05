@@ -1,10 +1,10 @@
 import notesList from '../components/notes-list.cmp.js';
 import notesInput from '../components/notes-input.cmp.js';
+import notesFilter from '../components/notes-filter.cmp.js';
+import pinnedNotes from '../components/pinned-notes.cmp.js';
 import { notesService } from '../service/notes-service.js';
 import { eventBus } from '../../../services/eventBus-service.js';
 import { utilService } from '../../../services/util-service.js';
-import notesFilter from '../components/notes-filter.cmp.js';
-import pinnedNotes from '../components/pinned-notes.cmp.js';
 
 export default {
     template: `
@@ -80,13 +80,11 @@ export default {
         },
 
         removeNote(id) {
-            console.log('removing', id);
             notesService.remove(id)
                 .then(() => {
                     const idx = this.allNotes.findIndex((note) => note.id === id);
                     this.allNotes.splice(idx, 1);
                     this.sortNotes();
-                    console.log('note removed successfuly!!');
                 });
 
         },
@@ -124,6 +122,7 @@ export default {
             }
             this.sortNotes();
             notesService.update(noteForUpdate);
+
         },
 
         pinNote(id) {

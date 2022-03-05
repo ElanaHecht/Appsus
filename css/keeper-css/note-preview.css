@@ -1,7 +1,7 @@
 .note-preview {
     background-color: var(--white);
     box-shadow: var(--border-shadow-light);
-    min-height: 150px;
+    min-height: 100px;
     margin: 0 auto;
     margin-bottom: 10px;
     display: flex;
@@ -14,7 +14,6 @@
     transition: .3s;
     page-break-inside: avoid;
     break-inside: avoid;
-    /* padding-top: 20px; */
     /* display: inline-block; */
 }
 

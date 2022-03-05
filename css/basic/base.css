@@ -5,6 +5,7 @@
 body {
    margin: 0;
    background-color: var(--main);
+   font-family: roboto;
 }
 
 h1,

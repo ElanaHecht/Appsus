@@ -1,8 +1,14 @@
 .user-msg {
    position: absolute;
-   top: 50px;
-   right: 10px;
+   text-align: center;
+   width: 120px;
+   height: 50px;
+   top: 10vh;
+   right: 0;
    padding: 10px;
-   background-color: var(--gray);
-color: var(--main);
+   background-color: var(--white);
+   color: var(--theme);
+   display: flex;
+   align-items: center;
+   box-shadow: var(--border-shadow-light);
 }

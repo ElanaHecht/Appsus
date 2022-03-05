@@ -4,7 +4,6 @@
 export default {
     template: `
     <section>            
-        <!-- <div class="input-container" > -->
             <form action="submit" @submit.prevent = "addNote" class = "note-form" >
                 <div class = "note-inputs">
                     
@@ -27,9 +26,7 @@ export default {
                         <!-- <input type="radio" id = "sound" value = "sound" name= "type" v-model="inputType">
                         <label for="sound" title="Sound">🔊</label> -->
                     </div>
-            </form>     
-        <!-- </div> -->
-                
+            </form>                  
     </section>
 
     `,

@@ -1,8 +1,7 @@
-import { eventBus } from "../../../services/eventBus-service.js"
 
 
-export default{
-    template:`
+export default {
+    template: `
 
         <section class = "color-pick">
         <div @click = "pickedColor" name = "lightgoldenrodyellow" class="color color-yellow"></div>
@@ -15,19 +14,18 @@ export default{
         </section>
     
     `,
-    date(){
-        return{
+    date() {
+        return {
 
 
-        }
+        };
     },
-    methods:{
-        pickedColor(ev){
-            const color = ev.path[0].attributes.name.nodeValue
-            this.$emit('selectedColor', color)
-            // console.log(color);
+    methods: {
+        pickedColor(ev) {
+            const color = ev.path[0].attributes.name.nodeValue;
+            this.$emit('selectedColor', color);
         }
     }
-}
+};
 
 

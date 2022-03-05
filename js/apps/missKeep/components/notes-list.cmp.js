@@ -1,31 +1,31 @@
 import notePreview from './note-preview.cmp.js';
 
 
-export default{
-    props:['notes'],
-    template:`
+export default {
+    props: ['notes'],
+    template: `
         <section class = 'notes-list main-layout'>
               <note-preview v-for="note in notes" :key="note.id" :note = "note"></note-preview>
         </section>  
     `,
-    data(){
-        return{
+    data() {
+        return {
 
-        }
+        };
     },
 
-    components:{
+    components: {
         notePreview,
-        
+
     },
-    created(){
+    created() {
     },
-    methods:{
+    methods: {
 
     },
 
-    computed:{
+    computed: {
 
     },
-   
-}
+
+};

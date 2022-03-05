@@ -21,7 +21,7 @@ export default {
     `,
     data() {
         return {
-            filterBy:{
+            filterBy: {
                 type: 'all',
                 input: ''
             }
@@ -30,10 +30,10 @@ export default {
     },
 
     methods: {
-        setFilter(){
-            this.$emit('filtered',{...this.filterBy})
+        setFilter() {
+            this.$emit('filtered', { ...this.filterBy });
         },
-      
+
     }
 
 
