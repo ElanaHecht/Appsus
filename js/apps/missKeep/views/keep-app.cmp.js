@@ -8,9 +8,9 @@ import pinnedNotes from '../components/pinned-notes.cmp.js';
 
 export default {
     template: `
-       <section  class="keep-app app-layout main-layout">
-            <notes-filter @filtered = 'setFilter'></notes-filter>
-            <notes-input @addNote = "addNote" ></notes-input>
+       <section  class="keep-app app-layout main-layout ">
+           <notes-input @addNote = "addNote" ></notes-input>
+           <notes-filter @filtered = 'setFilter'></notes-filter>
             <pinned-notes :notes="pinnedNotes" ></pinned-notes>
             <notes-list :notes="notesForDisplay" v-if = "notes"></notes-list>
 

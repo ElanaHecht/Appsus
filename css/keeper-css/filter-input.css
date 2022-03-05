@@ -1,15 +1,13 @@
 .notes-filter-container{
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 4vh;
-    left: 50%;
+  margin-bottom: 20px;
 }
 
 
 
 
-.notes-filter-container input{
-    height: 20px;
+.search-input{
+    height: 40px;
+    /* height: 20px; */
     border: none;
     box-shadow: var(--border-shadow-medium);
     padding-left: 10px;
@@ -17,7 +15,8 @@
 }
 
 .notes-filter-container select{
+    height: 40px;
     box-shadow: var(--border-shadow-medium);
-    height: 20px;
+    /* height: 20px; */
     border: none;
 }

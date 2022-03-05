@@ -69,7 +69,7 @@ export default {
     },
     computed: {
         inputTypeIcon() {
-            if (this.inputType === 'txt') return 'whats on your mind';
+            if (this.inputType === 'txt') return 'Whats on your mind';
             if (this.inputType === 'img') return 'Enter image URL';
             if (this.inputType === 'sound') return 'Upload your tune here';
             if (this.inputType === 'video') return 'Enter youtube URL here';
