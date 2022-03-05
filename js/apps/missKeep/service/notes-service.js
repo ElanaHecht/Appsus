@@ -50,7 +50,10 @@ function duplicate(dupe){
 function getEmptynote() {
     return {
         id: utilService.makeId(),
-        
+        txt:null,
+        video:null,
+        img:null,
+        todo:null,
         isPinned: false,
        
 

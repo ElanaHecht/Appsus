@@ -3,13 +3,16 @@
 
 export default {
     template: `
-    <section class = "note-input">            
-        <div class="input-container" >
-            <form action="submit" @submit.prevent = "addNote" class = "flex" >
-                <transition name = "slide-fade">
-                <input type="text" class = "note-title-input" v-if = "isTitle"  v-model="inputTitle" placeholder = "Title" @keyup.enter="addNote">
-                </transition>
-                    <input type="text" class = "note-content-input" v-model="inputVal" :placeholder = "inputTypeIcon" @keyup.enter="addNote" >
+    <section>            
+        <!-- <div class="input-container" > -->
+            <form action="submit" @submit.prevent = "addNote" class = "note-form" >
+                <div class = "note-inputs">
+                    
+                    <transition name = "slide-fade">
+                        <input type="text" class = "note-title-input" v-if = "isTitle"  v-model="inputTitle" placeholder = "Title" @keyup.enter="addNote">
+                    </transition>
+                    <input type="text" class = "note-content-input" :class="{switch: isTitle}" v-model="inputVal" :placeholder = "inputTypeIcon" @keyup.enter="addNote" >
+                </div>
                     
 
                     <div class="input-type-container flex" >
@@ -25,7 +28,7 @@ export default {
                         <label for="sound" title="Sound">🔊</label> -->
                     </div>
             </form>     
-        </div>
+        <!-- </div> -->
                 
     </section>
 
