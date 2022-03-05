@@ -1,8 +1,11 @@
-/* .home-img {
-   max-height: 60hv;
+.home-img {
+   margin: 0 auto; 
+   max-height: 84vh;
+   width: 100%;
+   object-fit: cover;
 }
 
-.home-page h2 {
+/* .home-page h2 {
    color: var(--main);
    font-size: 6em;
    position: absolute;

@@ -1,7 +1,7 @@
 export default {
    template:`
        <section class="home-page app-layout main-layout">
-           <h1>Welcome to Appsus</h1>
+           <img src="imgs/daniel-krueger-8xuYVwV06Ac-unsplash.jpg" class = "home-img">
        </section>
    `,
 }
