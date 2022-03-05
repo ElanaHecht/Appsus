@@ -9,8 +9,8 @@ export default {
             <section class="email-list">
                <h1 v-if="!emails">You don't have any emails...</h1>
                <ul>
-                  <li v-for="email in emails" :key="email.id"  @click="select(email.id)">
-               <email-preview :email="email" @remove="remove()" @setRead="setRead"/>
+                  <li v-for="email in emails" :key="email.id" >
+               <email-preview :email="email" @remove="remove()" />
                   </li>
                </ul>
             </section>
@@ -21,7 +21,6 @@ export default {
    data() {
       return {
          emails: null,
-         folder: null
       }
    },
    created() {
@@ -37,5 +36,5 @@ export default {
          email.criteria.status = 'trash';
          storageService.push('STORAGE_KEY', email)
      },
-   }
+   },
 }

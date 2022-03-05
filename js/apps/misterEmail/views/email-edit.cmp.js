@@ -1,4 +1,5 @@
 import { eventBus } from '../../../services/eventBus-service.js';
+import { emailService } from '../services/email-service.js';
 
 
 export default {
@@ -24,6 +25,7 @@ export default {
 },
 created() {
    const id = this.$route.params.emailId;
+   console.log(id);
    if (id) {
        emailService.get(id)
            .then(email => this.emailToRead = email);

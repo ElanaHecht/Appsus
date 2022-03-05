@@ -44,7 +44,7 @@ const routes = [
                 component: emailDraft
             },
             {
-                path: 'email/:emailId',
+                path: 'email/:emailId?',
                 component: emailEdit
             },
             

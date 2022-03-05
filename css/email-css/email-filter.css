@@ -1,4 +1,5 @@
 .email-filter {
+   margin-top: 20px;
    position: absolute;
    left: 50%;
    top: 10%;
@@ -30,6 +31,9 @@
 
 .email-filter select {
    cursor: pointer;
+   border: none;
+   box-shadow: var(--border-shadow-medium);
+   padding-left: 10px;
    width: 130px;
    font-size: 1.2rem;
    justify-content: space-between;

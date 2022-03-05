@@ -1,28 +1,34 @@
 import { eventBus } from '../../../services/eventBus-service.js';
-import emailDetails from '../views/email-details.cmp.js';
 
 export default {
    props: ['email'],
    template: `
-            <section class="email-preview" @click="expand" :class="readStyle" @mouseover="isHover = true" @mouseleave="isHover = false">
-               <div class="preview-container flex">
-               <span class="email-name">{{email.name}}</span>
-               <span class="email-subject">{{email.subject}} <span class="email-body">{{formatBody}}</span></span>
-               <span class="email-time" v-if="!isHover">{{formatTime}}</span>
-               <span v-else><button @click="remove(email.id, email)">🗑️</button><button @click="markRead(email.id, email)">✉️</button></span>
+            <section class="email-preview" :class="readStyle" @click="isSelected = !isSelected" @mouseover="isHover = true" @mouseleave="isHover = false">
+               <div class="preview-container flex wrap">
+               <h4 class="email-name">{{email.name}}</h4>
+               <h4 class="email-subject">{{email.subject}} <span class="email-body">{{formatBody}}</span></h4>
+               <h1 class="email-time" v-if="!isHover">{{formatTime}}</h1>
+               <div v-else class="list-btn"><button class="btn-edit" @click="remove(email.id, email)">🗑️</button><button class="btn-edit" @click="markRead(email.id, email)">✉️</button></div>
             </div>
 
-               <email-details v-if="isExpanded" :email="email" />
+            <div v-if="isSelected" class="email-details">
+               <div class="email-header">
+                  <h2>{{email.subject}}</h2>
+                  <div>
+                     <h4>{{email.name}} <span class="email-body">{{formatAddress}}</span></h4>
+                  </div>
+               </div>
+                  <div class="body">{{email.body}}</div>
+                  <div>
+                  <router-link :to="'email/'+email.id">Full view</router-link>
+                  </div>
+            </div>
             </section>
    `,
-   components: {
-      emailDetails,
-   },
    data() {
       return {
          isHover: false,
-         isEmailRead: false,
-         isExpanded: false,
+         isSelected: false,
       }
    },
    methods: {
@@ -42,14 +48,17 @@ export default {
    computed: {
       formatBody() {
          const body = this.email.body.slice(0, 50);
-         return `${body}...`
+         return `- ${body}...`
       },
       formatTime() {
          const date = new Date(this.email.sentAt)
          return `${date.getDate()}/${date.getMonth() + 1}/${date.getMonth()} ${date.getHours()}:${date.getMinutes()}0`
       },
+      formatAddress(){
+return `<${this.email.address}>`
+      },
       readStyle() {
-         return { read: this.isEmailRead }
+         return { read: this.isSelected }
       }
    }
 }

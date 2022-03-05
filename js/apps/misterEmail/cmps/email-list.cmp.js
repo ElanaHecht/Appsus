@@ -8,8 +8,8 @@ export default {
             <section class="email-list">
                <h1 v-if="!emails">You don't have any emails...</h1>
                <ul>
-                  <li v-for="email in emails" :key="email.id"  @click="select(email.id)">
-               <email-preview :email="email" @remove="removeEmail" @setRead="setRead"/>
+                  <li v-for="email in emails" :key="email.id"  >
+               <email-preview v-if="isSelected" :email="email" @remove="removeEmail" @setRead="setRead"/>
                   </li>
                </ul>
             </section>
@@ -21,6 +21,7 @@ export default {
       return {
          emails: null,
          folder: null
+         isSelected: false
       }
    },
    created() {
@@ -38,8 +39,5 @@ export default {
       setRead(email) {
          this.$emit('setRead', email)
       },
-      select(id) {
-         this.$emit('selected', id)
-      }
    }
 }

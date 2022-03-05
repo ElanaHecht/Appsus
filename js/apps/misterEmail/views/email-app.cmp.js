@@ -29,6 +29,7 @@ export default {
             emails: null,
             filterBy: null,
             unReadCount: 0
+            folder; 'inbox'
         }
     },
     created() {
@@ -37,7 +38,6 @@ export default {
                 this.emails = emails
                 console.log(this.emails);
             });
-        this.$router.push('/email/inbox')
         // this.unsubscribe = eventBus.on('save', this.email);
         // this.unsubscribe = eventBus.on('updateUnread', this.count);
 
@@ -66,7 +66,12 @@ export default {
             return filterSelect
         }
     },
-    unmounted() {
-        this.unsubscribe();
+//     unmounted() {
+//         this.unsubscribe();
+//     }
+watch: {
+    '$route'() {
+      this.getSites(this.id)
     }
+  },
 }

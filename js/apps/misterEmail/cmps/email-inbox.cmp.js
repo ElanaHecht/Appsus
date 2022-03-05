@@ -6,10 +6,13 @@ import emailPreview from './email-preview.cmp.js'
 export default {
    template: `
             <section class="email-list">
+               <div class="header">
+                  <h1>Primary</h1>
+               </div>
                <h1 v-if="!emails">You don't have any emails...</h1>
-               <ul>
-                  <li v-for="email in emails" :key="email.id"  @click="select(email.id)">
-               <email-preview :email="email" @remove="remove" @markRead="markRead"/>
+               <ul class="list-container wrap">
+                  <li v-for="email in emails" :key="email.id">
+               <email-preview :email="email" @remove="remove"/>
                   </li>
                </ul>
             </section>
@@ -20,7 +23,7 @@ export default {
    data() {
       return {
          emails: null,
-         unreadCount: 0
+         unreadCount: 0,
       }
    },
    created() {
@@ -42,5 +45,5 @@ export default {
          email.criteria.status = 'trash';
          storageService.push('STORAGE_KEY', email)
      },
-   }
+   },
 }

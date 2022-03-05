@@ -1,3 +1,8 @@
+.email-details {
+ position: relative;
+ bottom: -30px;
+}
+
 .email details .email-header{
    display: flex;
    flex-wrap: wrap;
