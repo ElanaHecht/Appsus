@@ -176,6 +176,26 @@ const notesStarter = [
         isPinned: false,
         color: "background-color:gold"
     },
+    {
+        id: utilService.makeId(),
+        txt:null,
+        title:'Weird Horse',
+        video:null,
+        img:'https://worldbirds.com/wp-content/uploads/2020/05/unicorn3.jpg',
+        todo:null,
+        isPinned: false,
+        color: "background-color:lightcoral"
+    },
+    {
+        id: utilService.makeId(),
+        txt:'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the mmy text ever since the 1500s',
+        title:null,
+        video:null,
+        img:null,
+        todo:null,
+        isPinned: false,
+        color: "background-color:lightcoral"
+    },
 ]
 
 _createnotes(notesStarter);
