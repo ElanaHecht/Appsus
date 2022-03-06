@@ -22,5 +22,11 @@
     font-weight: 600;
     margin-left: 40px;
     color: var(--headtxt) ;
+    transition: .4s;
+ }
+ 
+
+ .nav-bar a:hover{
+     color: rgb(230, 186, 66);
  }
  

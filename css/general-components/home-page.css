@@ -5,6 +5,25 @@
    object-fit: cover;
 }
 
+
+
+.home-page-background{
+   background-image: url('/imgs/daniel-krueger-8xuYVwV06Ac-unsplash.jpg');
+   background-position: center;
+   background-size: cover;
+   display: flex;
+   /* text-align: center; */
+   justify-content: center;
+   align-items: center;
+}
+
+
+.home-page-background h1{
+   font-size: 3rem;
+   color: var(--headtxt);
+   font-family: righteous;
+}
+
 /* .home-page h2 {
    color: var(--main);
    font-size: 6em;
