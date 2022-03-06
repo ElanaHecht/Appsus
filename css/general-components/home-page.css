@@ -8,7 +8,7 @@
 
 
 .home-page-background{
-   background-image: url('/imgs/daniel-krueger-8xuYVwV06Ac-unsplash.jpg');
+   background-image: url('./imgs/daniel-krueger-8xuYVwV06Ac-unsplash.jpg');
    background-position: center;
    background-size: cover;
    display: flex;
