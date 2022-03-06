@@ -41,9 +41,9 @@ export default {
             .then(emails => {
                 this.emails = emails;
                 console.log(this.emails);
-                this.unreadCount = emails.forEach( email => {
-                    if (!email.criteria.isRead) this.unreadCount++
-                })
+                // this.unreadCount = emails.forEach( email => {
+                //     if (!email.criteria.isRead) this.unreadCount++
+                // })
             });
             this.$router.push('/email/inbox')
     },
