@@ -12,7 +12,7 @@
 }
 
 .email-filter input {
-   width: 400px;
+   width: 300px;
    border: none;
    box-shadow: var(--border-shadow-medium);
    padding-left: 10px;

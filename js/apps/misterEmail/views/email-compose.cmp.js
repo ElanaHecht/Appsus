@@ -13,7 +13,7 @@ export default {
             <input type="text" v-model="emailToAdd.subject" />
             </div>
             <textarea v-model="emailToAdd.body"></textarea>
-            <button class="email-send">Send</button>
+            <button class="email-send" title="Send email">📨</button>
          </form>
          <button @click="goBack" class="email-back" title="Discard">🗑️</button>
       </section>
@@ -25,10 +25,9 @@ export default {
    },
    methods: {
       save() {
-         if (!this.emailToAdd.id) this.emailToAdd.id = utilService.makeId();
          this.emailToAdd.criteria.status = 'sent';
          this.emailToAdd.criteria.txt = `${this.emailToAdd.name}${this.emailToAdd.subject}${this.emailToAdd.body}`
-         eventBus.emit('save', this.emailToAdd)
+         emailService.save(this.emailToAdd);
            this.$router.push('/email/inbox')
       },
    goBack() {

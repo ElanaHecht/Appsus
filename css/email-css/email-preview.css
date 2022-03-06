@@ -1,4 +1,11 @@
 .read {
+   background-color: rgb(65, 64, 64);
+   border-top: 1px solid rgb(63, 63, 63);
+   border-bottom: 1px solid rgb(63, 63, 63);
+   padding: 20px;
+}
+
+.selected {
    background-color: var(--lightgray);
    border-top: 1px solid rgb(63, 63, 63);
    border-bottom: 1px solid rgb(63, 63, 63);

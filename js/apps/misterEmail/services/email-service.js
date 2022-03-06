@@ -10,6 +10,7 @@ export const emailService = {
     save,
     get,
     getEmptyEmail,
+    edit
 };
 
 function query() {
@@ -28,8 +29,11 @@ function get(emailId) {
 }
 
 function save(email) {
-    if (email.id) return storageService.put(STORAGE_KEY, email);
-    else return storageService.post(STORAGE_KEY, email);
+return storageService.post(STORAGE_KEY, email);
+}
+
+function edit(email){
+    return storageService.put(STORAGE_KEY, email);
 }
 
 function getEmptyEmail(name='', address = '', subject = '', body = '', sentAt) {

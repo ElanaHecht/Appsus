@@ -1,5 +1,4 @@
 import { emailService } from '../services/email-service.js';
-import { storageService } from '../../../services/async-storage-service.js';
 import { eventBus } from '../../../services/eventBus-service.js';
 import emailPreview from './email-preview.cmp.js'
 
@@ -19,7 +18,7 @@ export default {
    },
    data() {
       return {
-         emails: null,      
+         emails: null,  
       }
    },
    created() {
@@ -27,10 +26,5 @@ export default {
          .then(emails => {
             this.emails = emails.filter( email => email.criteria.status === 'trash')
          });
-   },
-   methods: {
-      remove(id, email) {
-        eventBus.emit('finalRemove', {id, email})
-     },
    },
 }

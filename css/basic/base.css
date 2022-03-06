@@ -27,3 +27,7 @@ ul,li {
 input{
    box-shadow: var(--border-shadow-medium);
 }
+
+button {
+   cursor: pointer;
+}

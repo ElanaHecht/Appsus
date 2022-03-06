@@ -1,7 +1,14 @@
 
+.folders{
+   margin-top: 50px;
+}
+
 .email-folder-list{
    cursor: pointer;
-   padding: 15px 15px;
+   font-family: roboto;
+   font-size: 1.3em;
+   padding: 10px 15px;
+   width: 200px;
    border-top-right-radius: 25px;
    border-bottom-right-radius: 25px;
    background-color: var(--lightgray);
@@ -11,6 +18,18 @@
 .email-folder-list:hover {
    background-color: var(--lighttheme);
 }
+
+.selected.email-folder-list{
+   cursor: pointer;
+   border: none;
+   padding: 10px 15px;
+   border-top-right-radius: 25px;
+   border-bottom-right-radius: 25px;
+   background-color: var(--theme);
+   color: white;
+}
+
+
 
 /* .email-folder-list li:hover {
    background-color: var(--lightgray);

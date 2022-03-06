@@ -4,6 +4,7 @@ import { eventBus } from '../../../services/eventBus-service.js';
 import emailPreview from './email-preview.cmp.js'
 
 export default {
+   // props: ['filterBy'],
    template: `
             <section class="email-list">
                <div class="header">
@@ -12,7 +13,7 @@ export default {
                <h1 v-if="!emails">You don't have any emails...</h1>
                <ul class="list-container wrap">
                   <li v-for="email in emails" :key="email.id">
-               <email-preview :email="email" @remove="remove"/>
+               <email-preview :email="email" />
                   </li>
                </ul>
             </section>
@@ -28,22 +29,7 @@ export default {
    },
    created() {
       emailService.query()
-      .then(emails => {
-         this.emails = emails.filter( email => email.criteria.status === 'inbox')
-            this.unreadCount = emails.forEach( email => {
-               if (!email.criteria.isRead){
-                  this.unreadCount++
-               }
-            })
-      });
-         // eventBus.emit('updateUnread', this.unreadCount)
+      .then(emails => { this.emails = emails.filter( email => email.criteria.status === 'inbox')})
    },
-   methods: {
-      remove(id, email) {
-         const idx = this.emails.findIndex((email) => email.id === id);
-         this.emails.splice(idx, 1)
-         email.criteria.status = 'trash';
-         storageService.push('STORAGE_KEY', email)
-     },
-   },
+
 }
